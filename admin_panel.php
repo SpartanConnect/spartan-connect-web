@@ -15,9 +15,9 @@
     <?php foreach ($announcements as $announcement) {?>
       <div class="announcement">
         <b style="heading">UNAPPROVED ANNOUNCEMENT</b><br>
-        <small>Posted from <?php echo $announcement['startDate']?> until <?php echo $announcement['endDate']?> by <?php echo get_teacher($announcement['teacherID']); ?></small>
-        <h1><?php echo $announcement['name']; ?></h1>
-        <p><?php echo $announcement['description']; ?></p>
+        <small>Posted from <?php echo htmlspecialchars($announcement['startDate'])?> until <?php echo htmlspecialchars($announcement['endDate'])?> by <?php echo htmlspecialchars(get_teacher($announcement['teacherID'])); ?></small>
+        <h1><?php echo htmlspecialchars($announcement['name']); ?></h1>
+        <p><?php echo htmlspecialchars($announcement['description']); ?></p>
       </div>
     <?php } ?>
   <?php } else { ?>
