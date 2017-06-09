@@ -1,6 +1,8 @@
 <?php
   include('includes/include.php');
-  include('./includes/auth.php');
+  include('includes/auth.php');
+  include('includes/announcements.php');
+
   get_header("Home Page");
 ?>
 <div class="container">
@@ -18,12 +20,14 @@
       <p>In order to create an announcement, please sign in with a teacher's Google account.</p>
       <button onclick="lock.show();">Login with Google</button>
     </div>
-  <?php } ?>
+  <?php } $announcements = get_current_announcements(); ?>
+  <?php foreach ($announcements as $announcement) {?>
   <div class="announcement">
-    <small>Posted 6/10-6/14 by Karl Geckle</small>
-    <h1>Tech Club Meeting on Friday!</h1>
-    <p>Tech Club is meeting this Friday at Lunch. We will be discussing app coding and you will learn how to build a basic website! Be there!</p>
+    <small>Posted from <?php echo $announcement['startDate']?> until <?php echo $announcement['endDate']?> by <?php echo get_teacher($announcement['teacherID']); ?></small>
+    <h1><?php echo $announcement['name']; ?></h1>
+    <p><?php echo $announcement['description']; ?></p>
   </div>
+  <?php } ?>
 </div>
 <script src="https://cdn.auth0.com/js/lock/10.16/lock.min.js"></script>
 <script>
@@ -32,7 +36,7 @@
       redirectUrl: '<?php echo ((IS_DEVELOPMENT ? LOCAL_URL : REMOTE_URL).AUTH0_REDIRECT_URI); ?>',
       responseType: 'code',
       params: {
-        scope: 'openid' // Learn about scopes: https://auth0.com/docs/scopes
+        scope: 'openid'
       }
     }
   });
