@@ -1,6 +1,7 @@
 <?php
   include('includes/include.php');
   include('./includes/auth.php');
+  include('./includes/announcements.php');
   get_header("Admin Panel");
 ?>
 <div class="container">
@@ -10,6 +11,15 @@
       <p>You have administrator access! Congrats!</p>
       <a href="index.php">Return to home page.</a><br>
     </div>
+    <?php $announcements = get_unapproved_announcements(); ?>
+    <?php foreach ($announcements as $announcement) {?>
+      <div class="announcement">
+        <b style="heading">UNAPPROVED ANNOUNCEMENT</b><br>
+        <small>Posted from <?php echo $announcement['startDate']?> until <?php echo $announcement['endDate']?> by <?php echo get_teacher($announcement['teacherID']); ?></small>
+        <h1><?php echo $announcement['name']; ?></h1>
+        <p><?php echo $announcement['description']; ?></p>
+      </div>
+    <?php } ?>
   <?php } else { ?>
     <div class="announcement create-announcement">
       <b class="heading">ERROR</b><br>

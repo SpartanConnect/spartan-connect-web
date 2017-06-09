@@ -20,6 +20,14 @@
     return $stmt->fetchAll();
   }
 
+  function get_unapproved_announcements() {
+    require("db.php");
+    $query = "SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `approved`=0";
+    $stmt = $dbc->prepare($query);
+    $stmt->execute();
+    return $stmt->fetchAll();
+  }
+
   function get_teacher($id) {
     require("db.php");
     $query = "SELECT * FROM ".DB_TABLE_TEACHERS." WHERE id = :id";
