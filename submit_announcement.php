@@ -1,6 +1,7 @@
 <?php
   include('./includes/include.php');
   include('./includes/auth.php');
+  include('./includes/announcements.php');
 
   // logic to submit!
   $errs = [];
@@ -31,7 +32,10 @@
 
     // Continue only if there were no errors.
     if (empty($errs)) {
-
+      $result = create_announcement($_POST['announce_name'], $_POST['announce_desc'], $_SESSION['teacherID'], format_date($_POST['announce_start']), format_date($_POST['announce_end']), format_date($_POST['announce_event_date']), format_time($_POST['announce_event_start']), format_time($_POST['announce_event_end']), 0, ((($_POST['announce_urgency'] == 'urgent') && ($_SESSION['privlevel'] == 1)) ? 1 : 0));
+      if (!$result) {
+        array_push($errs, "There was a problem submitting an announcement to the database. Please try again in a while.");
+      }
     }
   } else {
     array_push($errs, "Please use the online form to submit an announcement.");

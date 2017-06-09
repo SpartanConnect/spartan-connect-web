@@ -31,7 +31,7 @@
 </div>
 <script src="https://cdn.auth0.com/js/lock/10.16/lock.min.js"></script>
 <script>
-  var lock = new Auth0Lock('z4LMciYyS8fjmS2SGB4MfMh45fS2C7di', 'spartanconnecttest.auth0.com', {
+  var lock = new Auth0Lock('<?php echo AUTH0_CLIENT_ID; ?>', '<?php echo AUTH0_DOMAIN; ?>', {
     auth: {
       redirectUrl: '<?php echo ((IS_DEVELOPMENT ? LOCAL_URL : REMOTE_URL).AUTH0_REDIRECT_URI); ?>',
       responseType: 'code',

@@ -2,6 +2,7 @@
   include('constants.php');
   include('secret.php');
   include('db.php');
+  //
 
   require __DIR__ . '/../vendor/autoload.php';
   use Auth0\SDK\Auth0;
@@ -18,9 +19,12 @@
   ]);
 
   function set_session($success) {
+    require('announcements.php');
     if ($success) {
       $_SESSION['authenticated'] = true;
       $_SESSION['fullname'] = $_SESSION['auth0__user']['name'];
+      $_SESSION['email'] = $_SESSION['auth0__user']['email'];
+
       // Determine privileges based on admin array
       // 0 = basic privileges (can create announcements), 1 = admin privileges (use urgent tag)
       if (in_array($_SESSION['auth0__user']['nickname'], USER_ADMINISTRATORS)) {
@@ -29,6 +33,7 @@
         $_SESSION['privlevel'] = 0;
       }
       enforce_teachers_table();
+      $_SESSION['teacherID'] = get_teacher_id($_SESSION['email']);
     } else {
       $_SESSION['authenticated'] = false;
     }
@@ -36,7 +41,8 @@
 
   // Checks if user is in teachers table and adds them if they are not.
   function enforce_teachers_table() {
-    $query = "SELECT * FROM ".DB_TABLE_TEACHERS." WHERE email = :email";
+    require("db.php");
+    $query = "SELECT * FROM ".DB_TABLE_TEACHERS." WHERE `email` = :email";
     $stmt = $dbc->prepare($query);
     $stmt->execute(array(
       ':email' => $_SESSION['auth0__user']['email']
@@ -59,22 +65,23 @@
     }
   }
 
+
   function validate_date($date) {
     $d = DateTime::createFromFormat('m/d/Y', $date);
     return $d && $d->format('m/d/Y') === $date;
   }
   function validate_time($time) {
-    $d = DateTime::createFromFormat('g:i A', $time);
+    $d = DateTime::createFromFormat('h:i A', $time);
     return $d && $d->format('h:i A') === $time;
   }
   // convert for storage into MySQL db
   function format_date($date) {
-    $d = DateTime::createFromFormat('m/d/Y', $date);
-    return $d->format('Y-m-d');     // ex: 2017-07-12 from 07/12/2017
+    $fd = DateTime::createFromFormat('m/d/Y', $date);
+    return $fd->format('Y-m-d');     // ex: 2017-07-12 from 07/12/2017
   }
   function format_time($time) {
-    $t = DateTime::createFromFormat('h:i A', $date);
-    return $t->format('H:i');       // convert to 24-hour time
+    $ft = DateTime::createFromFormat('h:i A', $time);
+    return $ft->format('H:i');       // convert to 24-hour time
   }
 
 ?>
