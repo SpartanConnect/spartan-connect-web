@@ -2,7 +2,6 @@
   include('constants.php');
   include('secret.php');
   include('db.php');
-  //
 
   require __DIR__ . '/../vendor/autoload.php';
   use Auth0\SDK\Auth0;
