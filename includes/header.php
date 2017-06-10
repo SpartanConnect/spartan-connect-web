@@ -12,10 +12,15 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
       </head>
       <body>
-        <header>
-          <h1>Spartan Connect Header</h1>
-          <i>Spartan Connect header goes here.</i>
-        </header>';
+      <header>
+          <div class="header-top"></div>
+          <div class="header-school-container">
+              <span class="header-school-text">La Cañada<br>High School</span>
+          </div>
+          <div class="header-title-container">
+              <span class="header-title-text">Spartan Connect</span>
+          </div>
+      </header>';
   }
   function get_footer() {
     echo '</body></html>';
