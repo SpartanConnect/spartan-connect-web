@@ -12,6 +12,23 @@
       <a href="index.php">Return to home page.</a><br>
     </div>
     <?php $announcements = get_unapproved_announcements(); ?>
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Approval</th>
+      </tr>
+      <?php foreach ($announcements as $announcement) { ?>
+      <tr>
+        <td><?php echo htmlspecialchars($announcement['name']); ?></td>
+        <td><?php echo htmlspecialchars($announcement['description']); ?></td>
+        <td>
+          <button>Approve</button>
+          <button>Deny</button>
+        </td>
+      </tr>
+      <?php } ?>
+    </table>
     <?php foreach ($announcements as $announcement) {?>
       <div class="announcement">
         <b style="heading">UNAPPROVED ANNOUNCEMENT</b><br>

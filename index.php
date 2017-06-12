@@ -1,7 +1,7 @@
 <?php
-  include('includes/include.php');
-  include('includes/auth.php');
-  include('includes/announcements.php');
+  include_once('includes/include.php');
+  include_once('includes/auth.php');
+  include_once('includes/announcements.php');
 
   get_header("Home Page");
 ?>

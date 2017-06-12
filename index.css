@@ -107,3 +107,19 @@ textarea:focus {
 .datenumber {
   width: 20px;
 }
+
+/* Table */
+table {
+  text-align: left;
+  border: 1px solid #000000;
+  margin: 0 auto;
+  width: 960px;
+  cursor: default;
+  border-collapse: collapse;
+}
+
+table th, td {
+  border: 1px solid black;
+  margin: 0;
+  padding: 0;
+}

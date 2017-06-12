@@ -1,6 +1,6 @@
 <?php
-  include('./includes/include.php');
-  include('./includes/auth.php');
+  include_once('./includes/include.php');
+  include_once('./includes/auth.php');
 
   $userInfo = $auth0->getUser();
   if ($_GET['error'] == 'unauthorized') {

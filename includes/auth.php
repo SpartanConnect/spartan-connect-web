@@ -1,7 +1,7 @@
 <?php
-  include('constants.php');
-  include('secret.php');
-  include('db.php');
+  include_once('constants.php');
+  include_once('secret.php');
+  include_once('db.php');
 
   require __DIR__ . '/../vendor/autoload.php';
   use Auth0\SDK\Auth0;
@@ -18,7 +18,7 @@
   ]);
 
   function set_session($success) {
-    require('announcements.php');
+    require_once('announcements.php');
     if ($success) {
       $_SESSION['authenticated'] = true;
       $_SESSION['fullname'] = $_SESSION['auth0__user']['name'];
@@ -40,30 +40,20 @@
 
   // Checks if user is in teachers table and adds them if they are not.
   function enforce_teachers_table() {
-    require("db.php");
-    $query = "SELECT * FROM ".DB_TABLE_TEACHERS." WHERE `email` = :email";
-    $stmt = $dbc->prepare($query);
-    $stmt->execute(array(
+    $result = perform_query("SELECT * FROM ".DB_TABLE_TEACHERS." WHERE `email` = :email", array(
       ':email' => $_SESSION['auth0__user']['email']
     ));
-    if (count($stmt->fetchAll()) > 0) {
+    if (count($result) > 0) {
       return true;
     } else {
       // Add them to table
-      $query = "INSERT INTO ".DB_TABLE_TEACHERS." (`name`, `email`) VALUES (:name, :email)";
-      $stmt = $dbc->prepare($query);
-      $stmt->execute(array(
+      perform_query("INSERT INTO ".DB_TABLE_TEACHERS." (`name`, `email`) VALUES (:name, :email)", array(
         ':name' => $_SESSION['auth0__user']['name'],
         ':email' => $_SESSION['auth0__user']['email']
       ));
-      if ($stmt->rowCount() > 0) {
-        return true;
-      } else {
-        return false;
-      }
+      return true;
     }
   }
-
 
   function validate_date($date) {
     $d = DateTime::createFromFormat('m/d/Y', $date);
