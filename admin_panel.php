@@ -16,7 +16,7 @@
       <tr>
         <th>Title</th>
         <th>Description</th>
-        <th>Approval</th>
+        <th>Actions</th>
       </tr>
       <?php foreach ($announcements as $announcement) { ?>
       <tr>
