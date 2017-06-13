@@ -51,8 +51,8 @@ $(document).ready(function() {
       },
       dataType: "json"
     }).done(function(data) {
-      $("#admin-dialog-"+type+"-heading").text(data[0].name);
-      $("#admin-dialog-"+type+"-description").text(data[0].description);
+      $("#admin-dialog-"+type+"-heading").text(data.name);
+      $("#admin-dialog-"+type+"-description").text(data.description);
       dialog.dialog("open");
     });
   }

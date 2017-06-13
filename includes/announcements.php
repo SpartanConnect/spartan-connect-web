@@ -9,7 +9,7 @@
   function get_announcement_by_id($id) {
     return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `id` = :id", array(
       ':id' => $id
-    ));
+    ))[0];
   }
 
   function get_current_announcements() {

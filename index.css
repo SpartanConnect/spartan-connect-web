@@ -123,6 +123,8 @@ table th, td {
   border: 1px solid #4f4f4f;
   margin: 0;
   padding: 5px 10px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 table tr {
