@@ -8,7 +8,7 @@
   <?php if ($_SESSION['authenticated'] && $_SESSION['privlevel'] == 1) { ?>
     <div class="announcement">
       <b class="heading">NOTICE</b>
-      <p>You have administrator access! Congrats!</p>
+      <p>Welcome to the admin panel. Here, you can approve, deny, and edit announcements.</p>
       <a href="index.php">Return to home page.</a><br>
     </div>
     <?php $announcements = get_unapproved_announcements(); ?>
@@ -33,14 +33,7 @@
       </tr>
       <?php } ?>
     </table>
-    <?php foreach ($announcements as $announcement) {?>
-      <div class="announcement">
-        <b style="heading">UNAPPROVED ANNOUNCEMENT</b><br>
-        <small>Posted from <?php echo htmlspecialchars($announcement['startDate'])?> until <?php echo htmlspecialchars($announcement['endDate'])?> by <?php echo htmlspecialchars(get_teacher($announcement['teacherID'])); ?></small>
-        <h1><?php echo htmlspecialchars($announcement['name']); ?></h1>
-        <p><?php echo htmlspecialchars($announcement['description']); ?></p>
-      </div>
-    <?php } ?>
+    <br>
   <?php } else { ?>
     <div class="announcement create-announcement">
       <b class="heading">ERROR</b><br>

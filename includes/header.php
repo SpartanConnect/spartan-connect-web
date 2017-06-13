@@ -18,7 +18,7 @@
           <div class="header-school-container">
               <span class="header-school-text">La Cañada<br>High School</span>
           </div>
-          <div class="header-title-container">
+          <div class="header-title-container" onclick="location.href=\'index.php\'">
               <span class="header-title-text">Spartan Connect</span>
           </div>
       </header>';

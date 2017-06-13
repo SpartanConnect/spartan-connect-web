@@ -52,6 +52,7 @@ header {
   left: 10px;
   position: absolute;
   width: 300px;
+  cursor: pointer;
 }
 
 /* Container */
@@ -125,6 +126,7 @@ table th, td {
 }
 
 table tr {
+  vertical-align: text-top;
   background-color: #efefef;
 }
 
@@ -160,9 +162,14 @@ table tr:hover {
   background-color: #3498db;
 }
 
+.admin-form {
+  vertical-align: middle;
+}
+
 .action-selectors {
   border: 1px solid #4f4f4f;
   border-radius: 8px;
   background-color: #cfcfcf;
   overflow: hidden;
+  white-space: nowrap;
 }
