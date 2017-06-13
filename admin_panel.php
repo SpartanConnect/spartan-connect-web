@@ -12,6 +12,7 @@
       <a href="index.php">Return to home page.</a><br>
     </div>
     <?php $announcements = get_unapproved_announcements(); ?>
+    <h3>Unapproved Announcements</h3>
     <table>
       <tr>
         <th>Title</th>
@@ -22,9 +23,12 @@
       <tr>
         <td><?php echo htmlspecialchars($announcement['name']); ?></td>
         <td><?php echo htmlspecialchars($announcement['description']); ?></td>
-        <td>
-          <button>Approve</button>
-          <button>Deny</button>
+        <td class="admin-form" style="width:100px;">
+          <div class="action-selectors">
+            <i class="round-touch red fa fa-times" aria-hidden="true"></i>
+            <i class="round-touch blue fa fa-pencil-square-o" aria-hidden="true"></i>
+            <i class="round-touch green fa fa-check" aria-hidden="true"></i>
+          </div>
         </td>
       </tr>
       <?php } ?>

@@ -111,7 +111,7 @@ textarea:focus {
 /* Table */
 table {
   text-align: left;
-  border: 1px solid #000000;
+  border: 1px solid #4f4f4f;
   margin: 0 auto;
   width: 960px;
   cursor: default;
@@ -119,7 +119,50 @@ table {
 }
 
 table th, td {
-  border: 1px solid black;
+  border: 1px solid #4f4f4f;
   margin: 0;
   padding: 5px 10px;
+}
+
+table tr {
+  background-color: #efefef;
+}
+
+table tr:hover {
+  background-color: #ffffff;
+}
+
+/* A round, clickable button */
+.round-touch {
+  display: inline-block;
+  padding: 5px;
+  margin: 0;
+  text-align: center;
+  vertical-align: center;
+  background-color: #cfcfcf;
+  width: 20px;
+  height: 16px;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+.round-touch:hover {
+  background-color: #afafaf;
+  transition: background-color 150ms ease;
+}
+
+.round-touch.red:hover {
+  background-color: #e74c3c;
+}
+.round-touch.green:hover {
+  background-color: #2ecc71;
+}
+.round-touch.blue:hover {
+  background-color: #3498db;
+}
+
+.action-selectors {
+  border: 1px solid #4f4f4f;
+  border-radius: 8px;
+  background-color: #cfcfcf;
+  overflow: hidden;
 }
