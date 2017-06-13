@@ -113,6 +113,7 @@ header {
   display: inline-block;
   margin: 4px 20px;
   vertical-align: top;
+  max-width: 650px;
 }
 
 .alert h1, .alert p {
