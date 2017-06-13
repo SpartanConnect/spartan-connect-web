@@ -19,15 +19,14 @@
     else {
       // User is authenticated
       set_session(true);
-      header('Refresh:2; url=./create_announcement.php');
+      header('Location: user_panel.php');
       echo "Hello ".$_SESSION['fullname']."! Redirecting you shortly to the announcements creation page.<br>";
       echo "You have ".($_SESSION['privlevel'] == 1 ? "admin" : "basic")." privileges.";
     }
   } else {
     // User is authenticated
     set_session(true);
-    var_dump($_SESSION);
-    //header('Refresh:2; url=./create_announcement.php');
+    header('Location: user_panel.php');
     echo "Hello ".$_SESSION['fullname']."! Redirecting you shortly to the announcements creation page.<br>";
     echo "You have ".($_SESSION['privlevel'] == 1 ? "admin" : "basic")." privileges.";
   }
