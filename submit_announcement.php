@@ -31,7 +31,7 @@
     }
 
     // Continue only if there were no errors.
-    if (empty($errs)) {
+    if (empty($errs) && $_SESSION['authenticated']) {
       $result = create_announcement($_POST['announce_name'], $_POST['announce_desc'], $_SESSION['teacherID'], format_date($_POST['announce_start']), format_date($_POST['announce_end']), format_date($_POST['announce_event_date']), format_time($_POST['announce_event_start']), format_time($_POST['announce_event_end']), 0, ((($_POST['announce_urgency'] == 'urgent') && ($_SESSION['privlevel'] == 1)) ? 1 : 0));
       if (!$result) {
         array_push($errs, "There was a problem submitting an announcement to the database. Please try again in a while.");
@@ -49,7 +49,7 @@
           <div class="announcement create-announcement">
             <b class="heading">SUCCESS</b><br>
             <p>Your announcement has been successfully submitted for approval.</p>
-            <a href="index.php">Return to home page.</a>
+            <button onclick="location.href='user_panel.php'">Return to User Panel</button>
           </div>
         <?php } else { ?>
           <div class="announcement create-announcement">
@@ -59,14 +59,17 @@
               <li><?php echo $err; ?></li>
               <?php } ?>
             </ul>
-            <a href="create_announcement.php">Return to announcement creation.</a>
+            <button onclick="location.href='create_announcement.php'">Return to Announcement Creation</button>
           </div>
         <?php } ?>
       <?php } else { ?>
-        <div class="announcement create-announcement">
-          <b class="heading">ERROR</b><br>
-          <p>You do not have access to this page. Please return to the home page to login with a teacher account.</p>
-          <a href="index.php">Return to home page.</a>
+        <div class="alert">
+          <i class="fa fa-warning"></i>
+          <div class="alert-text">
+            <b class="heading">ERROR</b>
+            <p>You do not have access to this page. Please return to the home page to login with an administrator account.</p>
+            <button onclick="location.href='index.php'">Return to Home Page</button>
+          </div>
         </div>
       <?php } ?>
     </div>

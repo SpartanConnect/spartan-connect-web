@@ -27,13 +27,12 @@
       </tr>
       <?php foreach ($announcements as $announcement) { ?>
       <tr>
-        <td style="max-width:250px;"><?php echo htmlspecialchars($announcement['name']); ?> <span class="admin-announcement-id">(#<?php echo $announcement['id']; ?>)</span></td>
-        <td style="max-width:610px;"><?php echo htmlspecialchars($announcement['description']); ?></td>
-        <td class="admin-form" style="width:100px;">
+        <td style="max-width:250px;"><?php echo htmlspecialchars($announcement['name']); ?> <span class="user-announcement-id">(#<?php echo $announcement['id']; ?>)</span></td>
+        <td style="max-width:650px;"><?php echo htmlspecialchars($announcement['description']); ?></td>
+        <td class="user-form" style="width:60px;">
           <div class="action-selectors">
-            <i id="admin-deny-<?php echo $announcement['id']; ?>" class="round-touch red fa fa-times admin-deny" aria-hidden="true"></i>
-            <i id="admin-edit-<?php echo $announcement['id']; ?>" class="round-touch blue fa fa-pencil-square-o admin-edit" aria-hidden="true"></i>
-            <i id="admin-approve-<?php echo $announcement['id']; ?>" class="round-touch green fa fa-check admin-approve" aria-hidden="true"></i>
+            <i id="user-deny-<?php echo $announcement['id']; ?>" class="round-touch red fa fa-times user-deny" aria-hidden="true"></i>
+            <i id="user-edit-<?php echo $announcement['id']; ?>" class="round-touch blue fa fa-pencil-square-o user-edit" aria-hidden="true"></i>
           </div>
         </td>
       </tr>

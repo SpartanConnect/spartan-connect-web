@@ -6,10 +6,12 @@
 ?>
 <div class="container">
   <?php if ($_SESSION['authenticated'] && $_SESSION['privlevel'] == 1) { ?>
-    <div class="announcement">
-      <b class="heading">NOTICE</b>
-      <p>Welcome to the admin panel. Here, you can approve, deny, and edit announcements.</p>
-      <a href="index.php">Return to home page.</a><br>
+    <div class="alert">
+      <i class="fa fa-info-circle"></i>
+      <div class="alert-text">
+        <b class="heading">NOTICE</b>
+        <p>Welcome to the admin panel. Here, you can approve, deny, and edit announcements.</p>
+      </div>
     </div>
     <?php $announcements = get_unapproved_announcements(); ?>
     <h3>Unapproved Announcements</h3>
@@ -60,10 +62,13 @@
       </form>
     </div>
   <?php } else { ?>
-    <div class="announcement create-announcement">
-      <b class="heading">ERROR</b><br>
-      <p>You do not have access to this page. Please return to the home page to login with an administrator account.</p>
-      <a href="index.php">Return to home page.</a>
+    <div class="alert">
+      <i class="fa fa-warning"></i>
+      <div class="alert-text">
+        <b class="heading">ERROR</b>
+        <p>You do not have access to this page. Please return to the home page to login with an administrator account.</p>
+        <button onclick="location.href='index.php'">Return to Home Page</button>
+      </div>
     </div>
   <?php } ?>
 </div>

@@ -243,11 +243,11 @@ table tr:hover {
 
 /* Admin Panel */
 
-.admin-form {
+.admin-form, .user-form {
   vertical-align: middle;
 }
 
-.admin-announcement-id {
+.admin-announcement-id, .user-announcement-id {
   color: #efefef;
 }
 
