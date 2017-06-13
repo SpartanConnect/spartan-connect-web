@@ -166,10 +166,22 @@ table tr:hover {
   vertical-align: middle;
 }
 
+.admin-announcement-id {
+  color: #efefef;
+}
+
+table tr:hover .admin-announcement-id {
+  color: #8f8f8f;
+}
+
 .action-selectors {
   border: 1px solid #4f4f4f;
   border-radius: 8px;
   background-color: #cfcfcf;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.dialog {
+  font-family: Overpass, sans-serif;
 }
