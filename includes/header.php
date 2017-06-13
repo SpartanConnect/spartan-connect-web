@@ -1,5 +1,6 @@
 <?php
   function get_header($title) {
+    session_start();
     echo '<!DOCTYPE html>
     <html>
       <head>
@@ -25,8 +26,22 @@
         <script src="https://use.fontawesome.com/ac92a9740c.js"></script>
       </head>
       <body>
-      <header>
-          <div class="header-top"></div>
+        <header>
+          <div class="header-top">
+            <ul class="header-menu">';
+      echo '<li onclick="location.href=\'index.php\'" href="#">Home</li>';
+      if ($_SESSION['authenticated']) {
+        echo '<li onclick="location.href=\'user_panel.php\'" href="#">User Panel</li>';
+        if ($_SESSION['privlevel'] == 1) {
+          echo '<li onclick="location.href=\'admin_panel.php\'" href="#">Admin Panel</li>';
+        }
+        echo '<li onclick="location.href=\'logout.php\'" href="#">Log Out</li>';
+      } else {
+
+        echo '<li onclick="lock.show();" href="#">Log In</li>';
+      }
+      echo '</ul>
+          </div>
           <div class="header-school-container">
               <span class="header-school-text">La Cañada<br>High School</span>
           </div>
@@ -36,6 +51,20 @@
       </header>';
   }
   function get_footer() {
-    echo '</body></html>';
+    echo '
+    <script src="https://cdn.auth0.com/js/lock/10.16/lock.min.js"></script>
+    <script>
+      var lock = new Auth0Lock(\''.AUTH0_CLIENT_ID.'\', \''.AUTH0_DOMAIN.'\', {
+        auth: {
+          redirectUrl: \''.((IS_DEVELOPMENT ? LOCAL_URL : REMOTE_URL).AUTH0_REDIRECT_URI).'\',
+          responseType: \'code\',
+          params: {
+            scope: \'openid\'
+          }
+        }
+      });
+    </script>
+      </body>
+    </html>';
   }
 ?>

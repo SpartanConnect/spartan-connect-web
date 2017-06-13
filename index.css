@@ -14,8 +14,28 @@ header {
 
 .header-top {
   background: #A6192E;
+  color: #efefef;
+  text-align: right;
   height: 40px;
   width: 100%;
+}
+
+.header-menu {
+  margin: 0 10vw;
+  padding: 0;
+  list-style-type: none;
+  vertical-align: middle;
+}
+
+.header-menu li {
+  margin-top: 12px;
+  margin-left: 20px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.header-menu li:hover {
+  text-decoration: underline;
 }
 
 .header-school-container {
@@ -70,9 +90,34 @@ header {
   background-color: #efefef;
 }
 
-.announcement h1, .announcement p {
+.announcement h1, .announcement p, .alert h1, .alert p {
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+
+.alert {
+  width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #efefef;
+}
+
+.alert .fa {
+  display: inline-block;
+  font-size: 3.2em;
+  margin-left: 10px;
+}
+
+.alert-text {
+  display: inline-block;
+  margin: 4px 20px;
+  vertical-align: top;
+}
+
+.alert h1, .alert p {
+  padding: 0;
+  margin: 4px 0;
 }
 
 input[type="text"] {
@@ -99,6 +144,22 @@ textarea {
 
 textarea:focus {
   border: 1px solid #4f4f4f;
+}
+
+button, input[type="submit"] {
+  font-size: 1em;
+  font-family: Overpass, sans-serif;
+  border: 0;
+  background-color: #dfdfdf;
+  color: #4f4f4f;
+  padding: 8px 25px;
+  border-radius: 6px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+button:hover, input[type="submit"]:hover {
+  background-color: #cfcfcf;
 }
 
 .heading {
@@ -163,6 +224,24 @@ table tr:hover {
 .round-touch.blue:hover {
   background-color: #3498db;
 }
+
+/* Panels */
+
+.panel-heading {
+  margin-bottom: 10px;
+}
+
+.panel-heading h3 {
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.panel-heading button {
+  display: inline-block;
+  float: right;
+}
+
+/* Admin Panel */
 
 .admin-form {
   vertical-align: middle;
