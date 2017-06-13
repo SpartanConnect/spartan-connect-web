@@ -251,7 +251,7 @@ table tr:hover {
   color: #efefef;
 }
 
-table tr:hover .admin-announcement-id {
+table tr:hover .admin-announcement-id, table tr:hover .user-announcement-id {
   color: #8f8f8f;
 }
 
