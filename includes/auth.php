@@ -60,8 +60,8 @@
     return $d && $d->format('m/d/Y') === $date;
   }
   function validate_time($time) {
-    $d = DateTime::createFromFormat('h:i A', $time);
-    return $d && $d->format('h:i A') === $time;
+    $d = DateTime::createFromFormat('g:ia', $time);
+    return $d && $d->format('g:ia') === $time;
   }
   // convert for storage into MySQL db
   function format_date($date) {
@@ -69,7 +69,7 @@
     return $fd->format('Y-m-d');     // ex: 2017-07-12 from 07/12/2017
   }
   function format_time($time) {
-    $ft = DateTime::createFromFormat('h:i A', $time);
+    $ft = DateTime::createFromFormat('g:ia', $time);
     return $ft->format('H:i');       // convert to 24-hour time
   }
 
