@@ -21,7 +21,7 @@
             <p class="heading">Select what date and times your event will take place.</p>
             <label>Event Date: </label><input type="text" class="datepicker" name="announce_event_date"><br><br>
             <label>Start Time: </label><input type="text" id="announcement-start" class="timepicker" name="announce_event_start"><br><br>
-            <label>End Time: </label><input type="text" id="announcement-end" class="timepicker1" name="announce_event_end">
+            <label>End Time: </label><input type="text" id="announcement-end" class="timepicker" name="announce_event_end">
           </fieldset><br><br>
           <fieldset>
             <legend>Announcement Show Dates (Today is <?php echo date('m/d/y'); ?>)</legend>
@@ -38,11 +38,15 @@
             'minTime': '6:00 AM',
             'maxTime': '11:00 PM'
           });
-          $(".timepicker1").timepicker({
-            'minTime': '6:00 AM',
-            'maxTime': '11:00 PM',
-            'durationTime': $("#announcement-start").val().replace(/\s+/g, ''),
+          $("#announcement-end").timepicker('option', {
+            'durationTime': $("#announcement-start").val(),
             'showDuration': true
+          });
+          $("#announcement-start").change(function() {
+            $("#announcement-end").timepicker('option', {
+              'minTime': $("#announcement-start").val(),
+              'durationTime': $("#announcement-start").val()
+            });
           });
         });
         </script>
