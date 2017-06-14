@@ -21,6 +21,12 @@
   }
 
   function get_teacher_announcements($id) {
+    return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `teacherID` = :teacherID AND `approved`=0", array(
+      ':teacherID' => intval($id)
+    ));
+  }
+
+  function get_teacher_all_announcements($id) {
     return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `teacherID` = :teacherID", array(
       ':teacherID' => intval($id)
     ));
@@ -50,7 +56,7 @@
       ':eventEndTime' => $event_end,
       ':allDay' => $all_day,
       ':urgent' => $urgent,
-      ':approved' => 0
+      ':approved' => $urgent
     ), false);
     if ($result) {
       return true;
