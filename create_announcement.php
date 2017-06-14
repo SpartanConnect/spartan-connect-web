@@ -10,12 +10,14 @@
           <i class="heading">Welcome, <?php echo $_SESSION['fullname']; ?></i>.<br><br>
           <fieldset>
             <legend>General</legend>
-            <label>Title: </label><input type="text" id="announcement-title" name="announce_name" style="width:300px;"><br><br>
-            <label>Description: </label><br><textarea name="announce_desc" id="announcement-description" style="width: 400px; height: 100px;"></textarea>
+            <label>Title: </label><input type="text" class="emojis" name="announce_name" style="width:300px;"><br><br>
+            <label>Description: </label><br><textarea name="announce_desc" class="emojis" style="width: 400px; height: 100px;"></textarea>
             <script>
               $(document).ready(function() {
-              $("#announcement-title").emojioneArea();
-              $("#announcement-description").emojioneArea();
+              $(".emojis").emojioneArea({
+                pickerPosition: "bottom",
+                tonesStyle: "bullet"
+              });
               });
             </script>
             <?php if ($_SESSION['privlevel'] == 1) { ?>

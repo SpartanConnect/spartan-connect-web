@@ -18,13 +18,13 @@
         <meta property="og:image" content="">
 
         <link rel="stylesheet" type="text/css" href="index.css">
-		    <link rel="stylesheet" type="text/css" href="C:/wamp64/www/bower_components/emojionearea/scssemojionearea.css">
+		    <link rel="stylesheet" type="text/css" href="bower_components/emojionearea/dist/emojionearea.min.css">
         <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.css">
 
         <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-		    <script src="C:/wamp64/www/bower_components/emojionearea/src/emojionearea.js"></script>
+		    <script type="text/javascript" src="bower_components/emojionearea/dist/emojionearea.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.js"></script>
         <script src="https://use.fontawesome.com/ac92a9740c.js"></script>
       </head>
