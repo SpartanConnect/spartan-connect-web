@@ -11,7 +11,11 @@
       ':id' => $id
     ))[0];
   }
-
+  function delete_announcement_by_id($id)
+  {
+    return perform_query("DELETE FROM ".DB_TABLE_ANNOUNCEMENTS."WHERE `id` = :id");
+  }
+  
   function get_current_announcements() {
     return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `startDate` <= CURRENT_DATE AND `endDate` >= CURRENT_DATE AND `approved`=1", array());
   }
@@ -21,6 +25,12 @@
   }
 
   function get_teacher_announcements($id) {
+    return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `teacherID` = :teacherID AND `approved`=0", array(
+      ':teacherID' => intval($id)
+    ));
+  }
+
+  function get_teacher_all_announcements($id) {
     return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `teacherID` = :teacherID", array(
       ':teacherID' => intval($id)
     ));
@@ -50,7 +60,7 @@
       ':eventEndTime' => $event_end,
       ':allDay' => $all_day,
       ':urgent' => $urgent,
-      ':approved' => 0
+      ':approved' => $urgent
     ), false);
     if ($result) {
       return true;
