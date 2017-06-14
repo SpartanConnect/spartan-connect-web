@@ -10,8 +10,8 @@
           <i class="heading">Welcome, <?php echo $_SESSION['fullname']; ?></i>.<br><br>
           <fieldset>
             <legend>General</legend>
-            <label>Title: </label><br><input type="text" class="input-emojis" name="announce_name" style="width:300px;"><br>
-            <label>Description: </label><br><textarea name="announce_desc" class="input-emojis" style="width: 400px; height: 100px;"></textarea>
+            <input type="text" class="input-emojis" name="announce_name" style="width:100%; padding:0;" placeholder="Title"><br>
+            <textarea name="announce_desc" class="input-emojis" style="width:100%; height:100px; padding:0;" placeholder="Add your description here..."></textarea>
             <script>
               $(document).ready(function() {
                 $(".input-emojis").emojioneArea({

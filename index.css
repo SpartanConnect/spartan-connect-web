@@ -150,7 +150,7 @@ input[type="text"] {
   padding: 5px;
   outline: none;
   font-size: 1em;
-  border: 1px solid #8f8f8f;
+  border: 1px solid #CCC;
   border-radius: 3px;
 }
 
@@ -160,9 +160,9 @@ input[type="text"]:focus {
 
 textarea {
   resize: none;
-  margin: 10px 5px;
+  padding: 1em;
   font-family: Overpass, sans-serif;
-  border: 1px solid #8f8f8f;
+  border: 1px solid #CCC;
   border-radius: 6px;
 }
 
