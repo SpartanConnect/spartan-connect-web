@@ -32,7 +32,7 @@
 
     // Continue only if there were no errors.
     if (empty($errs) && $_SESSION['authenticated']) {
-      $result = create_announcement(mb_convert_encoding($_POST['announce_name'],"HTML-ENTITIES"), mb_convert_encoding($_POST['announce_desc'], "HTML-ENTITIES"), $_SESSION['teacherID'], format_date($_POST['announce_start']), format_date($_POST['announce_end']), format_date($_POST['announce_event_date']), format_time($_POST['announce_event_start']), format_time($_POST['announce_event_end']), 0, ((($_POST['announce_urgency'] == 'urgent') && ($_SESSION['privlevel'] == 1)) ? 1 : 0));
+      $result = create_announcement(htmlspecialchars(mb_convert_encoding($_POST['announce_name'],"HTML-ENTITIES")), htmlspecialchars(mb_convert_encoding($_POST['announce_desc'], "HTML-ENTITIES")), $_SESSION['teacherID'], format_date($_POST['announce_start']), format_date($_POST['announce_end']), format_date($_POST['announce_event_date']), format_time($_POST['announce_event_start']), format_time($_POST['announce_event_end']), 0, ((($_POST['announce_urgency'] == 'urgent') && ($_SESSION['privlevel'] == 1)) ? 1 : 0));
       if (!$result) {
         array_push($errs, "There was a problem submitting an announcement to the database. Please try again in a while.");
       }
