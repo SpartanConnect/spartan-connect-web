@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Cookie|Libre+Baskerville|Overpass');
-
 body {
   font-family: Overpass, sans-serif;
   margin: 0;
   padding: 0;
 }
 
+
 /* Header */
+
 header {
   height: 160px;
   width: 100%;
@@ -75,7 +76,9 @@ header {
   cursor: pointer;
 }
 
+
 /* Container */
+
 .container {
   width: 960px;
   margin: 0 auto;
@@ -171,7 +174,9 @@ button:hover, input[type="submit"]:hover {
   width: 20px;
 }
 
+
 /* Table */
+
 table {
   text-align: left;
   border: 1px solid #4f4f4f;
@@ -198,7 +203,9 @@ table tr:hover {
   background-color: #ffffff;
 }
 
+
 /* A round, clickable button */
+
 .round-touch {
   display: inline-block;
   padding: 5px;
@@ -211,6 +218,7 @@ table tr:hover {
   cursor: pointer;
   transition: background-color 150ms ease;
 }
+
 .round-touch:hover {
   background-color: #afafaf;
   transition: background-color 150ms ease;
@@ -219,12 +227,15 @@ table tr:hover {
 .round-touch.red:hover {
   background-color: #e74c3c;
 }
+
 .round-touch.green:hover {
   background-color: #2ecc71;
 }
+
 .round-touch.blue:hover {
   background-color: #3498db;
 }
+
 
 /* Panels */
 
@@ -241,6 +252,7 @@ table tr:hover {
   display: inline-block;
   float: right;
 }
+
 
 /* Admin Panel */
 

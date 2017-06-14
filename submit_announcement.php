@@ -62,15 +62,8 @@
             <button onclick="location.href='create_announcement.php'">Return to Announcement Creation</button>
           </div>
         <?php } ?>
-      <?php } else { ?>
-        <div class="alert">
-          <i class="fa fa-warning"></i>
-          <div class="alert-text">
-            <b class="heading">ERROR</b>
-            <p>You do not have access to this page. Please return to the home page to login with an administrator account.</p>
-            <button onclick="location.href='index.php'">Return to Home Page</button>
-          </div>
-        </div>
-      <?php } ?>
+      <?php } else {
+        print_alert_unauthenticated();
+      } ?>
     </div>
 <?php get_footer(); ?>
