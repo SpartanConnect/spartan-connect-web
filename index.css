@@ -146,7 +146,7 @@ header {
   margin: 4px 0;
 }
 
-input[type="text"] {
+input[type="text"], input[type="number"] {
   font-family: Overpass, sans-serif;
   padding: 5px;
   outline: none;
@@ -156,7 +156,7 @@ input[type="text"] {
   transition: border-color 150ms ease;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus, input[type="number"]:focus {
   border: 1px solid #4f4f4f;
   transition: border-color 150ms ease;
 }
@@ -346,5 +346,26 @@ table tr:hover .admin-announcement-id, table tr:hover .user-announcement-id {
 }
 
 .dialog {
+  font-family: Overpass, sans-serif;
+}
+
+/* Tag Dropdown Styling */
+
+.ui-selectmenu-menu {
+  border: none;
+  background-color: #bfbfbf;
+  border-radius: 6px;
+  width: auto;
+}
+
+.ui-selectmenu-button.ui-button {
+  height: 1em;
+  width: auto !important;
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
+
+.ui-selectmenu-text {
+  font-size: 0.8em;
   font-family: Overpass, sans-serif;
 }

@@ -18,6 +18,8 @@
                   pickerPosition: "bottom",
                   tonesStyle: "bullet"
                 });
+                $("#announce_tag_select_1").selectmenu();
+                $("#announce_tag_grow").hide();
               });
             </script>
             <?php if ($_SESSION['privlevel'] == 1) { ?>
@@ -39,7 +41,7 @@
             <button id="announce_tag_grade_btn_all" class="small">Select All</button><br><br>
             <b class="heading">TAGS</b><br>
             <div id="announce_tag_selects">
-              <select id="announce_tag_select_1" name="announce_tag_select_1" style="display: block; margin: 5px 0;">
+              <select id="announce_tag_select_1" name="announce_tag_select_1" style="display: block; margin: 5px 0;" class="announce-tag tag-dropdown">
                 <option value="volvo">Volvo</option>
                 <option value="saab">Saab</option>
                 <option value="mercedes">Mercedes</option>
@@ -47,12 +49,32 @@
               </select>
             </div><br>
             <button id="announce_tag_btn_create" class="small">+ Add a Tag</button>
+            <button id="announce_tag_btn_grow" class="small">+ Add Multiple Tags</button>
+            <div id="announce_tag_grow" style="display:inline-block;">
+              <input id="announce_tag_input_grow" type="number" style="width: 2em;" value="1" min="1"/>
+              <button id="announce_tag_submit_grow" class="small">Add</button>
+            </div>
             <script>
               var selectCounter = 1;
               $("#announce_tag_btn_create").click(function(e){
                 e.preventDefault();
                 selectCounter = selectCounter + 1;
                 $("#announce_tag_select_1").clone().prop("id", "announce_tag_select_"+selectCounter).prop("name", "announce_tag_select_"+selectCounter).appendTo("#announce_tag_selects");
+                $("#announce_tag_select_"+selectCounter).selectmenu();
+              });
+              $("#announce_tag_btn_grow").click(function(e) {
+                e.preventDefault();
+                $("#announce_tag_grow").toggle();
+              })
+              $("#announce_tag_submit_grow").click(function(e){
+                e.preventDefault();
+                for (i = 0; i < parseInt($("#announce_tag_input_grow").val()); i++) {
+                  selectCounter = selectCounter + 1;
+                  $("#announce_tag_select_1").clone().prop("id", "announce_tag_select_"+selectCounter).prop("name", "announce_tag_select_"+selectCounter).appendTo("#announce_tag_selects");
+                  $("#announce_tag_select_"+selectCounter).selectmenu();
+                }
+                $("#announce_tag_grow").val(1);
+                $("#announce_tag_grow").hide();
               });
               $("#announce_tag_grade_btn_middle").click(function(e){
                 e.preventDefault();
