@@ -25,14 +25,15 @@
   }
 
   function get_teacher_announcements($id) {
-    return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `teacherID` = :teacherID AND `approved`=0", array(
+    return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `teacherID` = :teacherID", array(
       ':teacherID' => intval($id)
     ));
   }
 
-  function get_teacher_all_announcements($id) {
-    return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `teacherID` = :teacherID", array(
-      ':teacherID' => intval($id)
+  function get_teacher_approved_announcements($id, $approved = 0) {
+    return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `teacherID` = :teacherID AND `approved`=:approved", array(
+      ':teacherID' => intval($id),
+      ':approved' => intval($approved)
     ));
   }
 
@@ -46,6 +47,10 @@
     return perform_query("SELECT * FROM ".DB_TABLE_TEACHERS." WHERE `email` = :email", array(
       ':email' => $email
     ))[0]['id'];
+  }
+
+  function get_tags() {
+    return perform_query("SELECT * FROM ".DB_TABLE_TAGS, array());
   }
 
   function create_announcement($title, $description, $teacherID, $start_date, $end_date, $event_date, $event_start, $event_end, $all_day, $urgent) {

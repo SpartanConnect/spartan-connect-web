@@ -10,7 +10,7 @@
     print_alert_info(
       "Welcome to the user panel. Here, you can create and edit announcements."
     );
-    $announcements = get_teacher_announcements($_SESSION['teacherID']);
+    $announcements = get_teacher_approved_announcements($_SESSION['teacherID'], 0);
   ?>
   <div class="panel-heading">
     <h3>Your Announcements</h3>

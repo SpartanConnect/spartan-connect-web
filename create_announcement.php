@@ -1,6 +1,7 @@
 <?php
   include('./includes/include.php');
   include('./includes/auth.php');
+  include('./includes/announcements.php');
   get_header("Create Announcement");
 ?>
     <div class="container">
@@ -42,10 +43,14 @@
             <b class="heading">TAGS</b><br>
             <div id="announce_tag_selects">
               <select id="announce_tag_select_1" name="announce_tag_select_1" style="display: block; margin: 5px 0;" class="announce-tag tag-dropdown">
-                <option value="volvo">Volvo</option>
-                <option value="saab">Saab</option>
-                <option value="mercedes">Mercedes</option>
-                <option value="audi">Audi</option>
+                <?php
+                  $tags = get_tags();
+                  foreach ($tags as $tag) {
+                    if ($tag['visible']) {
+                      echo '<option value="'.$tag['id'].'">'.$tag['name'].'</option>';
+                    }
+                  }
+                ?>
               </select>
             </div><br>
             <button id="announce_tag_btn_create" class="small">+ Add a Tag</button>
