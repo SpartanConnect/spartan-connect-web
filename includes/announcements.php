@@ -22,7 +22,7 @@
 
   function get_teacher_announcements($id) {
     return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `teacherID`=:teacherID", array(
-      ':teacherID' => $id
+      ':teacherID' => intval($id)
     ));
   }
 
