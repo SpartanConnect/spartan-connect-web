@@ -13,6 +13,7 @@
     $announcements = get_current_announcements();
   ?>
   <h3 style="text-align: center; margin-top: 30px;">Current Announcements</h3>
+  <center><button class="download" onclick="window.open('download.php')">Download All Announcements</button></center>
   <?php foreach ($announcements as $announcement) {?>
   <div class="announcement">
     <small>Posted from <?php echo htmlspecialchars($announcement['startDate']); ?> until <?php echo htmlspecialchars($announcement['endDate']); ?> by <?php echo htmlspecialchars(get_teacher($announcement['teacherID'])); ?></small>
