@@ -8,11 +8,11 @@
       <?php if ($_SESSION['authenticated']) { ?>
         <form class="announcement create-announcement" action="submit_announcement.php" method="post">
           <b class="heading">CREATE ANNOUNCEMENT</b><br>
-          <i class="heading">Welcome, <?php echo $_SESSION['fullname']; ?></i>.<br><br>
+          <i class="heading">All fields marked with a (*) are required.</i><br><br>
           <fieldset>
             <legend>General</legend>
-            <input type="text" class="input-emojis" name="announce_name" style="width:100%; padding:0;" placeholder="Title"><br>
-            <textarea name="announce_desc" class="input-emojis" style="width:100%; height:100px; padding:0;" placeholder="Add your description here..."></textarea>
+            <input type="text" class="input-emojis" name="announce_name" style="width:100%; padding:0;" placeholder="Title (*)"><br>
+            <textarea name="announce_desc" class="input-emojis" style="width:100%; height:100px; padding:0;" placeholder="Add your description here... (*)"></textarea>
             <script>
               $(document).ready(function() {
                 $(".input-emojis").emojioneArea({
@@ -30,7 +30,7 @@
           </fieldset><br><br>
           <fieldset>
             <legend>Tagging</legend>
-            <b class="heading">GRADES</b><br>
+            <b class="heading">GRADES (*)</b><br>
             <label>7:</label> <?php print_checkbox("announce_tag_grade_7", "1"); ?>
             <label>8:</label> <?php print_checkbox("announce_tag_grade_8", "1"); ?><br>
             <label>9:</label> <?php print_checkbox("announce_tag_grade_9", "1"); ?>
@@ -40,16 +40,21 @@
             <button id="announce_tag_grade_btn_middle" class="small">Select 7/8</button>
             <button id="announce_tag_grade_btn_high" class="small">Select 9-12</button>
             <button id="announce_tag_grade_btn_all" class="small">Select All</button><br><br>
-            <b class="heading">TAGS</b><br>
+            <b class="heading">TAGS (*)</b><br>
             <div id="announce_tag_selects">
               <select id="announce_tag_select_1" name="announce_tag_select_1" style="display: block; margin: 5px 0;" class="announce-tag tag-dropdown">
                 <?php
                   $tags = get_tags();
+                  $tag_count = 0;
                   if (!empty($tags)) {
                     foreach ($tags as $tag) {
                       if ($tag['visible']) {
                         echo '<option value="'.$tag['id'].'">'.$tag['name'].'</option>';
+                        $tag_count++;
                       }
+                    }
+                    if ($tag_count == 0) {
+                      echo '<option value="0">(no tags available)</option>';
                     }
                   } else {
                     echo '<option value="0">(no tags available)</option>';
@@ -61,12 +66,12 @@
             <button id="announce_tag_btn_grow" class="small">+ Add Multiple Tags</button>
             <button id="announce_tag_btn_decimate" class="small">- Delete a Tag</button>
             <div id="announce_tag_grow" style="display:inline-block;">
-              <input id="announce_tag_input_grow" type="number" style="width: 2em;" value="1" min="1" max="<?php echo count($tags)-1; ?>"/>
+              <input id="announce_tag_input_grow" type="number" style="width: 2em;" value="1" min="1" max="<?php echo $tag_count-1; ?>"/>
               <button id="announce_tag_submit_grow" class="small">Add</button>
             </div>
             <script>
               var selectCounter = 1;
-              var maximumCounter = <?php echo count($tags); ?>;
+              var maximumCounter = <?php echo $tag_count; ?>;
               $("#announce_tag_btn_create").click(function(e){
                 e.preventDefault();
                 if (selectCounter >= maximumCounter) {
@@ -74,7 +79,6 @@
                 } else {
                   selectCounter = selectCounter + 1;
                   $("#announce_tag_select_1").clone().prop("id", "announce_tag_select_"+selectCounter).prop("name", "announce_tag_select_"+selectCounter).appendTo("#announce_tag_selects");
-                  $("#announce_tag_select_"+selectCounter).children().filter("[value="+selectCounter+"]").prop("selected", "selected");
                   $("#announce_tag_select_"+selectCounter).selectmenu();
                 }
               });
@@ -138,15 +142,15 @@
           <fieldset>
             <legend>Event Date & Time</legend>
             <p class="heading">Select what date and times your event will take place.</p>
-            <label>Event Date: </label><input type="text" class="datepicker" name="announce_event_date"><br><br>
-            <label>Start Time: </label><input type="text" id="announcement-start" class="timepicker" name="announce_event_start"><br><br>
-            <label>End Time: </label><input type="text" id="announcement-end" class="timepicker" name="announce_event_end">
+            <label>Event Date (*): </label><input type="text" class="datepicker" name="announce_event_date"><br><br>
+            <label>Start Time (*): </label><input type="text" id="announcement-start" class="timepicker" name="announce_event_start"><br><br>
+            <label>End Time (*): </label><input type="text" id="announcement-end" class="timepicker" name="announce_event_end">
           </fieldset><br><br>
           <fieldset>
             <legend>Announcement Show Dates (Today is <?php echo date('m/d/y'); ?>)</legend>
             <p class="heading">Select a window of dates you want this announcement to appear on.</p>
-            <label>Start Date: </label><input type="text" class="datepicker" name="announce_start"><br><br>
-            <label>End Date: </label><input type="text" class="datepicker" name="announce_end">
+            <label>Start Date (*): </label><input type="text" class="datepicker" name="announce_start"><br><br>
+            <label>End Date (*): </label><input type="text" class="datepicker" name="announce_end">
           </fieldset><br><br>
           <input type="submit" name="announce_sub" value="Submit Announcement">
         </form>
