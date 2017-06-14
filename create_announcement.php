@@ -45,38 +45,63 @@
               <select id="announce_tag_select_1" name="announce_tag_select_1" style="display: block; margin: 5px 0;" class="announce-tag tag-dropdown">
                 <?php
                   $tags = get_tags();
-                  foreach ($tags as $tag) {
-                    if ($tag['visible']) {
-                      echo '<option value="'.$tag['id'].'">'.$tag['name'].'</option>';
+                  if (!empty($tags)) {
+                    foreach ($tags as $tag) {
+                      if ($tag['visible']) {
+                        echo '<option value="'.$tag['id'].'">'.$tag['name'].'</option>';
+                      }
                     }
+                  } else {
+                    echo '<option value="0">(no tags available)</option>';
                   }
                 ?>
               </select>
             </div><br>
             <button id="announce_tag_btn_create" class="small">+ Add a Tag</button>
             <button id="announce_tag_btn_grow" class="small">+ Add Multiple Tags</button>
+            <button id="announce_tag_btn_decimate" class="small">- Delete a Tag</button>
             <div id="announce_tag_grow" style="display:inline-block;">
-              <input id="announce_tag_input_grow" type="number" style="width: 2em;" value="1" min="1"/>
+              <input id="announce_tag_input_grow" type="number" style="width: 2em;" value="1" min="1" max="<?php echo count($tags)-1; ?>"/>
               <button id="announce_tag_submit_grow" class="small">Add</button>
             </div>
             <script>
               var selectCounter = 1;
+              var maximumCounter = <?php echo count($tags); ?>;
               $("#announce_tag_btn_create").click(function(e){
                 e.preventDefault();
-                selectCounter = selectCounter + 1;
-                $("#announce_tag_select_1").clone().prop("id", "announce_tag_select_"+selectCounter).prop("name", "announce_tag_select_"+selectCounter).appendTo("#announce_tag_selects");
-                $("#announce_tag_select_"+selectCounter).selectmenu();
+                if (selectCounter >= maximumCounter) {
+                  alert("Cannot add more tags than the maximum provided!");
+                } else {
+                  selectCounter = selectCounter + 1;
+                  $("#announce_tag_select_1").clone().prop("id", "announce_tag_select_"+selectCounter).prop("name", "announce_tag_select_"+selectCounter).appendTo("#announce_tag_selects");
+                  $("#announce_tag_select_"+selectCounter).children().filter("[value="+selectCounter+"]").prop("selected", "selected");
+                  $("#announce_tag_select_"+selectCounter).selectmenu();
+                }
               });
               $("#announce_tag_btn_grow").click(function(e) {
                 e.preventDefault();
                 $("#announce_tag_grow").toggle();
-              })
+              });
+              $("#announce_tag_btn_decimate").click(function(e) {
+                e.preventDefault();
+                if (selectCounter > 1) {
+                  $("#announce_tag_select_"+selectCounter).remove();
+                  selectCounter = selectCounter - 1;
+                } else {
+                  alert("Your announcement must have at least one tag.");
+                }
+              });
               $("#announce_tag_submit_grow").click(function(e){
                 e.preventDefault();
                 for (i = 0; i < parseInt($("#announce_tag_input_grow").val()); i++) {
-                  selectCounter = selectCounter + 1;
-                  $("#announce_tag_select_1").clone().prop("id", "announce_tag_select_"+selectCounter).prop("name", "announce_tag_select_"+selectCounter).appendTo("#announce_tag_selects");
-                  $("#announce_tag_select_"+selectCounter).selectmenu();
+                  if (selectCounter >= maximumCounter) {
+                    alert("Cannot add more tags than the maximum on the database!");
+                    break;
+                  } else {
+                    selectCounter = selectCounter + 1;
+                    $("#announce_tag_select_1").clone().prop("id", "announce_tag_select_"+selectCounter).prop("name", "announce_tag_select_"+selectCounter).appendTo("#announce_tag_selects");
+                    $("#announce_tag_select_"+selectCounter).selectmenu();
+                  }
                 }
                 $("#announce_tag_input_grow").val("1");
                 $("#announce_tag_grow").hide();
