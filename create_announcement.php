@@ -34,9 +34,9 @@
             <label>10:</label> <?php print_checkbox("announce_tag_grade_10", "1"); ?>
             <label>11:</label> <?php print_checkbox("announce_tag_grade_11", "1"); ?>
             <label>12:</label> <?php print_checkbox("announce_tag_grade_12", "1"); ?><br><br>
-            <button id="announce_tag_grade_btn_middle" class="small">Check 7/8</button>
-            <button id="announce_tag_grade_btn_high" class="small">Check 9-12</button>
-            <button id="announce_tag_grade_btn_all" class="small">Check All</button><br><br>
+            <button id="announce_tag_grade_btn_middle" class="small">Select 7/8</button>
+            <button id="announce_tag_grade_btn_high" class="small">Select 9-12</button>
+            <button id="announce_tag_grade_btn_all" class="small">Select All</button><br><br>
             <b class="heading">TAGS</b><br>
             <div id="announce_tag_selects">
               <select id="announce_tag_select_1" name="announce_tag_select_1" style="display: block; margin: 5px 0;">
