@@ -21,7 +21,8 @@
               });
             </script>
             <?php if ($_SESSION['privlevel'] == 1) { ?>
-              <br><label>Tag as Urgent:</label><input type="checkbox" name="announce_urgency" value="urgent">
+              <br><label>Tag as Urgent:</label>
+              <?php print_checkbox("announce_urgency", "urgent"); ?>
             <?php } ?>
           </fieldset><br><br>
           <fieldset>

@@ -57,4 +57,12 @@
     print_dialog($tag, $title, $content);
   }
 
+  // Checkbox: General Function for Printing Custom Checkbox
+  function print_checkbox($id, $value) {
+    echo '<div class="checkbox">
+      <input id="'.$id.'" type="checkbox" name="'.$id.'" value="'.$value.'">
+      <label for="'.$id.'"></label>
+    </div>';
+  }
+
 ?>
