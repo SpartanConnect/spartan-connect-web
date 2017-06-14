@@ -26,6 +26,64 @@
             <?php } ?>
           </fieldset><br><br>
           <fieldset>
+            <legend>Tagging</legend>
+            <b class="heading">GRADES</b><br>
+            <label>7:</label> <?php print_checkbox("announce_tag_grade_7", "1"); ?>
+            <label>8:</label> <?php print_checkbox("announce_tag_grade_8", "1"); ?><br>
+            <label>9:</label> <?php print_checkbox("announce_tag_grade_9", "1"); ?>
+            <label>10:</label> <?php print_checkbox("announce_tag_grade_10", "1"); ?>
+            <label>11:</label> <?php print_checkbox("announce_tag_grade_11", "1"); ?>
+            <label>12:</label> <?php print_checkbox("announce_tag_grade_12", "1"); ?><br><br>
+            <button id="announce_tag_grade_btn_middle" class="small">Check 7/8</button>
+            <button id="announce_tag_grade_btn_high" class="small">Check 9-12</button>
+            <button id="announce_tag_grade_btn_all" class="small">Check All</button><br><br>
+            <b class="heading">TAGS</b><br>
+            <div id="announce_tag_selects">
+              <select id="announce_tag_select_1" name="announce_tag_select_1" style="display: block; margin: 5px 0;">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+              </select>
+            </div><br>
+            <button id="announce_tag_btn_create" class="small">+ Add a Tag</button>
+            <script>
+              var selectCounter = 1;
+              $("#announce_tag_btn_create").click(function(e){
+                e.preventDefault();
+                selectCounter = selectCounter + 1;
+                $("#announce_tag_select_1").clone().prop("id", "announce_tag_select_"+selectCounter).prop("name", "announce_tag_select_"+selectCounter).appendTo("#announce_tag_selects");
+              });
+              $("#announce_tag_grade_btn_middle").click(function(e){
+                e.preventDefault();
+                $("#announce_tag_grade_7").prop("checked", true);
+                $("#announce_tag_grade_8").prop("checked", true);
+                $("#announce_tag_grade_9").prop("checked", false);
+                $("#announce_tag_grade_10").prop("checked", false);
+                $("#announce_tag_grade_11").prop("checked", false);
+                $("#announce_tag_grade_12").prop("checked", false);
+              });
+              $("#announce_tag_grade_btn_high").click(function(e){
+                e.preventDefault();
+                $("#announce_tag_grade_7").prop("checked", false);
+                $("#announce_tag_grade_8").prop("checked", false);
+                $("#announce_tag_grade_9").prop("checked", true);
+                $("#announce_tag_grade_10").prop("checked", true);
+                $("#announce_tag_grade_11").prop("checked", true);
+                $("#announce_tag_grade_12").prop("checked", true);
+              });
+              $("#announce_tag_grade_btn_all").click(function(e){
+                e.preventDefault();
+                $("#announce_tag_grade_7").prop("checked", true);
+                $("#announce_tag_grade_8").prop("checked", true);
+                $("#announce_tag_grade_9").prop("checked", true);
+                $("#announce_tag_grade_10").prop("checked", true);
+                $("#announce_tag_grade_11").prop("checked", true);
+                $("#announce_tag_grade_12").prop("checked", true);
+              });
+            </script>
+          </fieldset><br><br>
+          <fieldset>
             <legend>Event Date & Time</legend>
             <p class="heading">Select what date and times your event will take place.</p>
             <label>Event Date: </label><input type="text" class="datepicker" name="announce_event_date"><br><br>

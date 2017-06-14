@@ -191,6 +191,11 @@ button:hover, input[type="submit"]:hover {
   background-color: #cfcfcf;
 }
 
+button.small {
+  padding: 5px 12px;
+  font-size: 0.8em;
+}
+
 /* Checkbox Styling */
 
 .checkbox input[type="checkbox"] {
