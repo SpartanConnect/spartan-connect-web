@@ -10,7 +10,7 @@
     print_alert_info(
       "Welcome to the user panel. Here, you can create and edit announcements."
     );
-    $announcements = get_teacher_announcements($_SESSION['teacherID']);
+    //$announcements = get_teacher_announcements($_SESSION['teacherID']);
   ?>
   <div class="panel-heading">
     <h3>Your Announcements</h3>
@@ -22,7 +22,7 @@
       <th>Description</th>
       <th>Actions</th>
     </tr>
-    <?php foreach ($announcements as $announcement) { ?>
+    <?php if (!empty($announcements)) { foreach ($announcements as $announcement) { ?>
     <tr>
       <td style="max-width:250px;"><?php echo htmlspecialchars($announcement['name']); ?> <span class="user-announcement-id">(#<?php echo $announcement['id']; ?>)</span></td>
       <td style="max-width:650px;"><?php echo htmlspecialchars($announcement['description']); ?></td>
@@ -32,6 +32,12 @@
           <i id="user-edit-<?php echo $announcement['id']; ?>" class="round-touch blue fa fa-pencil-square-o user-edit" aria-hidden="true"></i>
         </div>
       </td>
+    </tr>
+    <?php }} else { ?>
+    <tr>
+      <td style="max-width:250px;">No announcements</td>
+      <td style="max-width:650px;">Click on '+ Create New Announcement' to create your first announcement.</td>
+      <td class="user-form" style="width:60px;"></td>
     </tr>
     <?php } ?>
   </table>

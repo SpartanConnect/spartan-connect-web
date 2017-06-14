@@ -17,11 +17,11 @@
   }
 
   function get_unapproved_announcements() {
-    return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `approved`=0", array());
+    return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `approved` = 0", array());
   }
 
   function get_teacher_announcements($id) {
-    return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `teacherID`=:teacherID", array(
+    return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `teacherID` = :teacherID", array(
       ':teacherID' => intval($id)
     ));
   }
