@@ -26,7 +26,7 @@
     print_alert_warning(
       "In order to create an announcement, please log in with a teacher's Google account.",
       "CREATE ANNOUNCEMENT",
-      '<button onclick="lock.show();">Login with Google</button>'
+      '<button onclick="showModal();">Login with Google</button>'
     );
   }
 
