@@ -73,7 +73,7 @@
                   $("#announce_tag_select_1").clone().prop("id", "announce_tag_select_"+selectCounter).prop("name", "announce_tag_select_"+selectCounter).appendTo("#announce_tag_selects");
                   $("#announce_tag_select_"+selectCounter).selectmenu();
                 }
-                $("#announce_tag_grow").val(1);
+                $("#announce_tag_input_grow").val("1");
                 $("#announce_tag_grow").hide();
               });
               $("#announce_tag_grade_btn_middle").click(function(e){
