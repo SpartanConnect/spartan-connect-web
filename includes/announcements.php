@@ -11,7 +11,11 @@
       ':id' => $id
     ))[0];
   }
-
+  function delete_announcement_by_id($id)
+  {
+    return perform_query("DELETE FROM ".DB_TABLE_ANNOUNCEMENTS."WHERE `id` = :id");
+  }
+  
   function get_current_announcements() {
     return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `startDate` <= CURRENT_DATE AND `endDate` >= CURRENT_DATE AND `approved`=1", array());
   }
