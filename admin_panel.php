@@ -21,8 +21,8 @@
     </tr>
     <?php foreach ($announcements as $announcement) { ?>
     <tr>
-      <td style="max-width:250px;"><?php echo htmlspecialchars($announcement['name']); ?> <span class="admin-announcement-id">(#<?php echo $announcement['id']; ?>)</span></td>
-      <td style="max-width:610px;"><?php echo htmlspecialchars($announcement['description']); ?></td>
+      <td style="max-width:250px;"><?php echo $announcement['name'] ?> <span class="admin-announcement-id">(#<?php echo $announcement['id']; ?>)</span></td>
+      <td style="max-width:610px;"><?php echo $announcement['description'] ?></td>
       <td class="admin-form" style="width:100px;">
         <div class="action-selectors">
           <i id="admin-deny-<?php echo $announcement['id']; ?>" class="round-touch red fa fa-times admin-deny" aria-hidden="true"></i>
