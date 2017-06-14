@@ -10,18 +10,18 @@
           <i class="heading">Welcome, <?php echo $_SESSION['fullname']; ?></i>.<br><br>
           <fieldset>
             <legend>General</legend>
-            <label>Title: </label><input type="text" class="emojis" name="announce_name" style="width:300px;"><br><br>
-            <label>Description: </label><br><textarea name="announce_desc" class="emojis" style="width: 400px; height: 100px;"></textarea>
+            <label>Title: </label><br><input type="text" class="input-emojis" name="announce_name" style="width:300px;"><br>
+            <label>Description: </label><br><textarea name="announce_desc" class="input-emojis" style="width: 400px; height: 100px;"></textarea>
             <script>
               $(document).ready(function() {
-              $(".emojis").emojioneArea({
-                pickerPosition: "bottom",
-                tonesStyle: "bullet"
-              });
+                $(".input-emojis").emojioneArea({
+                  pickerPosition: "bottom",
+                  tonesStyle: "bullet"
+                });
               });
             </script>
             <?php if ($_SESSION['privlevel'] == 1) { ?>
-              <label>Tag as Urgent:</label><input type="checkbox" name="announce_urgency" value="urgent">
+              <br><label>Tag as Urgent:</label><input type="checkbox" name="announce_urgency" value="urgent">
             <?php } ?>
           </fieldset><br><br>
           <fieldset>

@@ -1,0 +1,20 @@
+{
+  "name": "spartan-connect",
+  "description": "A basic web app that allows teachers and administrators to add announcements to the Spartan Connect mobile app.",
+  "main": "",
+  "authors": [
+    "Kevin Mo <encadyma.hi@gmail.com>",
+    "Kamyar Salahi <ksalahi19@mylcusd.net>",
+    "Jeffrey Kaufman <jkaufman19@mylcusd.net>"
+  ],
+  "license": "UNLICENSED",
+  "homepage": "https://github.com/SpartanConnect/spartan-connect-web",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
