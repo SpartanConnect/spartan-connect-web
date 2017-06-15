@@ -38,4 +38,13 @@
       exception_handler($e);
     }
   }
+
+  function get_last_inserted_id() {
+    global $dbc;
+    try {
+      return $dbc->lastInsertId();
+    } catch (PDOException $e) {
+      exception_handler($e);
+    }
+  }
 ?>

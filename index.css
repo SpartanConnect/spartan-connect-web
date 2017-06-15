@@ -146,7 +146,7 @@ header {
   margin: 4px 0;
 }
 
-input[type="text"] {
+input[type="text"], input[type="number"] {
   font-family: Overpass, sans-serif;
   padding: 5px;
   outline: none;
@@ -156,7 +156,7 @@ input[type="text"] {
   transition: border-color 150ms ease;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus, input[type="number"]:focus {
   border: 1px solid #4f4f4f;
   transition: border-color 150ms ease;
 }
@@ -173,6 +173,10 @@ textarea {
 textarea:focus {
   border: 1px solid #4f4f4f;
   transition: border-color 150ms ease;
+}
+
+.emojionearea {
+  max-width: 400px !important;
 }
 
 button, input[type="submit"] {
@@ -347,4 +351,47 @@ table tr:hover .admin-announcement-id, table tr:hover .user-announcement-id {
 
 .dialog {
   font-family: Overpass, sans-serif;
+}
+
+/* Tag Dropdown Styling */
+
+.ui-selectmenu-menu {
+  border: none;
+  background-color: #bfbfbf;
+  border-radius: 6px;
+  width: auto;
+}
+
+.ui-selectmenu-button.ui-button {
+  height: 1em;
+  width: auto !important;
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
+
+.ui-selectmenu-text {
+  font-size: 0.8em;
+  font-family: Overpass, sans-serif;
+}
+
+/* Tags Styling */
+
+.tags-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tags-list li {
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.announcement-tag {
+  font-size: 0.8em;
+  cursor: default;
+  padding: 4px 6px;
+  background-color: #bfbfbf;
+  border-radius: 6px;
 }
