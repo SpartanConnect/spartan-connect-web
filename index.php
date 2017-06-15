@@ -13,13 +13,21 @@
     $announcements = get_current_announcements();
   ?>
   <h3 style="text-align: center; margin-top: 30px;">Current Announcements</h3>
-  <div class="announcement" id="announcement-display-0" style="display: none;">
-    <small>Posted from <span class="announcement-start-date">Loading</span> until <span class="announcement-end-date">Loading</span> by <span class="announcement-user">Loading</span></small>
-    <h1 class="announcement-title">Loading Announcement Title</h1>
-    <p class="announcement-description">Loading Announcement Description</p>
-    <ul class="tags-list"></ul>
+
+  <div id="announcements-container">
+    <div id="announcements-container-error">
+      <?php print_alert_warning("We could not find an announcement with the selected categories."); ?>
+    </div>
+    <?php foreach ($announcements as $announcement) { ?>
+      <div class="announcement" id="announcement-display-<?php echo $announcement['id']; ?>">
+        <small>Posted from <span class="announcement-start-date"><?php echo $announcement['startDate']; ?></span> until <span class="announcement-end-date"><?php echo $announcement['endDate']; ?></span> by <span class="announcement-user"><?php echo get_teacher(intval($announcement['teacherID'])); ?></span></small>
+        <h1 class="announcement-name"><?php echo $announcement['name']; ?></h1>
+        <p class="announcement-description"><?php echo $announcement['description']; ?></p>
+        <ul class="tags-list">
+        </ul>
+      </div>
+    <?php } ?>
   </div>
-  <div id="announcements-container"></div>
 
   <div class="announcement-filter hidden">
     <center><button id="announcement-filter-toggle">Show Category Filters</button></center><br><br>
@@ -46,6 +54,19 @@
       </center>
     </div>
     <script>
+      var filterToggled = false;
+
+      $("#announcement-filter-toggle").click(function(e) {
+        $(".announcement-filter").toggleClass("hidden");
+        if (filterToggled) {
+          $("#announcement-filter-toggle").text("Show Category Filters");
+          filterToggled = false;
+        } else {
+          $("#announcement-filter-toggle").text("Hide Category Filters");
+          filterToggled = true;
+        }
+      });
+
       var isSelected = false;
       $("#filter-list-select-all").click(function(e) {
         e.preventDefault();
@@ -70,29 +91,13 @@
         refreshAnnouncements(categories);
       });
 
-      var filterToggled = false;
-
-      $("#announcement-filter-toggle").click(function(e) {
-        $(".announcement-filter").toggleClass("hidden");
-        if (filterToggled) {
-          $("#announcement-filter-toggle").text("Show Category Filters");
-          filterToggled = false;
-        } else {
-          $("#announcement-filter-toggle").text("Hide Category Filters");
-          filterToggled = true;
-        }
-      });
-
-      $(document).ready(function(){
-        refreshAnnouncements('');
-      });
-
       function refreshAnnouncements(cat) {
         $.ajax({
           method: "GET",
           url: "api/get_announcements.php",
           data: {
-            "filters": cat
+            "filters": cat,
+            "returnType": "ids"
           },
           dataType: "json"
         }).done(function(data) {
