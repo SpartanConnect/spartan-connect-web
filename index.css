@@ -175,6 +175,10 @@ textarea:focus {
   transition: border-color 150ms ease;
 }
 
+.emojionearea {
+  max-width: 400px !important;
+}
+
 button, input[type="submit"] {
   font-size: 1em;
   font-family: Overpass, sans-serif;
