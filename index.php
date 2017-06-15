@@ -110,10 +110,8 @@
               $("#announcement-display-"+(i+1)+" .announcement-description").html(data[i].description);
 
               // Handle Tags
-              console.log(data[i].tags);
               if (data[i].tags != null) {
                 for (id in data[i].tags) {
-                  console.log(data[i].tags[id]);
                   $("#announcement-display-"+(i+1)+" .tags-list").append('<li class="announcement-tag">'+data[i].tags[id].name+'</li>');
                 }
               } else {
