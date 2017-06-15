@@ -38,8 +38,28 @@
           <?php print_checkbox("tag-search-".$tag['id'], $tag['id']); ?>
         </div>
       <?php } ?>
+      <div style="float: right; margin: 10px 0;">
+        <button class="small" id="filter-list-select-all">Select All</button>
+        <button class="small">Search</button>
+      </div>
+      <br>
     </form><br>
     <button class="download" onclick="window.open('download.php')">Download All Announcements</button>
+    <script>
+      var isSelected = false;
+      $("#filter-list-select-all").click(function(e) {
+        e.preventDefault();
+        if (!isSelected) {
+          $(".filter-list input[type='checkbox']").prop('checked', 'checked');
+          $("#filter-list-select-all").text("Deselect All");
+          isSelected = true;
+        } else {
+          $(".filter-list input[type='checkbox']").prop('checked', '');
+          $("#filter-list-select-all").text("Select All");
+          isSelected = false;
+        }
+      });
+    </script>
   </div>
 </div>
 <?php get_footer(); ?>
