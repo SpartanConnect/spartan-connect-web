@@ -11,8 +11,8 @@
           <i class="heading">All fields marked with a (*) are required.</i><br><br>
           <fieldset>
             <legend>General</legend>
-            <input type="text" class="input-emojis" name="announce_name" style="width:100%; padding:0;" placeholder="Title (*)"><br>
-            <textarea name="announce_desc" class="input-emojis" style="width:100%; height:100px; padding:0;" placeholder="Add your description here... (*)"></textarea>
+            <input type="text" class="input-emojis" name="announce_name" style="padding:0;" placeholder="Title (*)"><br>
+            <textarea name="announce_desc" class="input-emojis" style="height:100px; padding:0;" placeholder="Add your description here... (*)"></textarea>
             <script>
               $(document).ready(function() {
                 $(".input-emojis").emojioneArea({
