@@ -7,7 +7,7 @@
   }
 
   function get_approved_announcements() {
-    return perform_query("SELECT `name`, `description`, `startDate`, `endDate` FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `approved`=1", array());
+    return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `approved`=1", array());
   }
   function get_announcement_by_id($id) {
     return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `id` = :id", array(

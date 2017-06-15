@@ -395,3 +395,14 @@ table tr:hover .admin-announcement-id, table tr:hover .user-announcement-id {
   background-color: #bfbfbf;
   border-radius: 6px;
 }
+
+/* Announcement Filter Box (Temporary?) */
+
+.announcement-filter {
+  position: absolute;
+  top: 240px;
+  background-color: #efefef;
+  padding: 20px;
+  border-radius: 6px;
+  right: 5vw;
+}

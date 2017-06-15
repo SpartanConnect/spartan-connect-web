@@ -13,7 +13,6 @@
     $announcements = get_current_announcements();
   ?>
   <h3 style="text-align: center; margin-top: 30px;">Current Announcements</h3>
-  <center><button class="download" onclick="window.open('download.php')">Download All Announcements</button></center>
   <?php foreach ($announcements as $announcement) {?>
   <div class="announcement">
     <small>Posted from <?php echo htmlspecialchars($announcement['startDate']); ?> until <?php echo htmlspecialchars($announcement['endDate']); ?> by <?php echo htmlspecialchars(get_teacher($announcement['teacherID'])); ?></small>
@@ -29,5 +28,16 @@
     <?php } ?>
   </div>
   <?php } ?>
+  <div class="announcement-filter">
+    <label>Filter By</label><br>
+    <form>
+      <?php $tags_all = get_tags(); ?>
+      <?php foreach ($tags_all as $tag) { ?>
+        <label><?php echo $tag['name']; ?></label>
+        <?php print_checkbox("tag-search-".$tag['id'], $tag['id']); ?><br>
+      <?php } ?>
+    </form><br>
+    <button class="download" onclick="window.open('download.php')">Download All Announcements</button>
+  </div>
 </div>
 <?php get_footer(); ?>
