@@ -12,7 +12,9 @@
     );
     $announcements = get_unapproved_announcements();
   ?>
-  <h3>Unapproved Announcements</h3>
+  <div class="panel-heading">
+    <h3>Unapproved Announcements</h3>
+  </div>
   <table>
     <tr>
       <th>Title</th>

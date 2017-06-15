@@ -32,6 +32,7 @@
       <body>
         <header>
           <div class="header-top">
+            <span class="header-top-title" onclick="location.href=\'index.php\'">Spartan Connect</span>
             <ul class="header-menu">';
       echo '<li onclick="location.href=\'index.php\'" href="#">Home</li>';
       if ($_SESSION['authenticated']) {

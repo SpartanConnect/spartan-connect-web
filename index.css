@@ -5,6 +5,37 @@ body {
   padding: 0;
 }
 
+@media screen and (max-width: 960px) {
+  body {
+    overflow-x: hidden;
+  }
+  header {
+    height: 40px !important;
+  }
+  .header-school-container, .header-title-container {
+    display: none;
+  }
+  .header-top-title {
+    display: inline-block !important;
+  }
+  .alert {
+    width: 80vw !important;
+  }
+  .panel-heading {
+    width: 80vw !important;
+    margin: 0 auto;
+  }
+  table {
+    max-width: 90vw;
+  }
+  .container {
+    width: 100% !important;
+  }
+  .alert-text {
+    max-width: 75% !important;
+  }
+}
+
 
 /* Header */
 
@@ -21,6 +52,14 @@ header {
   width: 100%;
 }
 
+.header-top-title {
+  display: none;
+  margin-top: 10px;
+  margin-left: 10vw;
+  float: left;
+  cursor: pointer;
+}
+
 .header-menu {
   margin: 0 10vw;
   padding: 0;
@@ -29,7 +68,7 @@ header {
 }
 
 .header-menu li {
-  margin-top: 12px;
+  margin-top: 10px;
   font-size: 16px;
   margin-left: 20px;
   display: inline-block;

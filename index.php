@@ -86,7 +86,6 @@
       });
 
       function refreshAnnouncements(cat) {
-        $('#announcements-container').html('');
         $.ajax({
           method: "GET",
           url: "api/get_announcements.php",
@@ -96,8 +95,9 @@
           dataType: "json"
         }).done(function(data) {
           if (data.length == 0) {
-            $('#announcements-container').html('We could not find an announcement with the selected categories.');
+            $('#announcements-container').html('<?php print_alert_warning("We could not find an announcement with the selected categories.", "WARNING", null, true) ?>');
           } else {
+            $('#announcements-container').html('');
             for (i = 0; i < data.length; i++) {
               // Handle Display
               $("#announcement-display-0").clone().prop('id', 'announcement-display-'+(i+1)).prop('style','').appendTo('#announcements-container');

@@ -1,25 +1,29 @@
 <?php
 
   // Alert Box: General Function for Printing Alert Boxes
-  function print_alert($iconClass, $title, $description, $html) {
-    echo '<div class="alert">
+  function print_alert($iconClass, $title, $description, $html, $trim) {
+    $alert = '<div class="alert">
       <i class="fa '.$iconClass.'"></i>
       <div class="alert-text">
         <b class="heading">'.htmlspecialchars($title).'</b>
         <p>'.htmlspecialchars($description).'</p>';
     if (!empty($html)) {
-      echo $html;
+      $alert = $alert.$html;
     }
-    echo '</div></div>';
+    $alert = $alert.'</div></div>';
+    if ($trim) {
+      $alert = str_replace("\n", '', $alert);
+    }
+    echo $alert;
   }
 
   // Alert Box: Alias functions
-  function print_alert_info($description, $title = "NOTICE", $html = null) {
-    print_alert("fa-info-circle", $title, $description, $html);
+  function print_alert_info($description, $title = "NOTICE", $html = null, $trim = false) {
+    print_alert("fa-info-circle", $title, $description, $html, $trim);
   }
 
-  function print_alert_warning($description, $title = "WARNING", $html = null) {
-    print_alert("fa-warning", $title, $description, $html);
+  function print_alert_warning($description, $title = "WARNING", $html = null, $trim = false) {
+    print_alert("fa-warning", $title, $description, $html, $trim);
   }
 
   function print_alert_unauthenticated() {
