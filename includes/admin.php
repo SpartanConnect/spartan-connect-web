@@ -1,5 +1,5 @@
 <?php
-  function deny_announcement($reason, $name, $description, $announcement, $email) {
+  function deny_announcement($reason, $name, $description, $email) {
     $subject = "Rejected Announcement"
     $body = "Hello ".$name.", <br><br>"."We regret to inform you that your announcement '".$name."' request was rejected by an administrator.\n\r\n\rDescription:\n\r".$description."\n\r\n\rThe reason for which your announcement was denied, as described by the administrator are included below:\n\r\n\r".$reason;
     $headers = 'To: '.$name.' '.$email."\r\n".
