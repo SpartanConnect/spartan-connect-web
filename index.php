@@ -18,6 +18,14 @@
     <small>Posted from <?php echo htmlspecialchars($announcement['startDate']); ?> until <?php echo htmlspecialchars($announcement['endDate']); ?> by <?php echo htmlspecialchars(get_teacher($announcement['teacherID'])); ?></small>
     <h1><?php echo $announcement['name']; ?></h1>
     <p><?php echo $announcement['description']; ?></p>
+    <?php $tags = get_tags_by_post_id($announcement['id']); ?>
+    <?php if (!empty($tags)) {?>
+    <ul class="tags-list">
+      <?php foreach ($tags as $tag) { ?>
+        <li class="announcement-tag"><?php echo $tag['name']; ?></li>
+      <?php }?>
+    </ul>
+    <?php } ?>
   </div>
   <?php } ?>
 </div>

@@ -59,6 +59,27 @@
     ))[0]['id'];
   }
 
+  function get_tag_by_id($id) {
+    return perform_query("SELECT * FROM ".DB_TABLE_TAGS." WHERE `id` = :id", array(
+      ':id' => $id
+    ))[0];
+  }
+
+  function get_tags_by_post_id($id) {
+    $results = perform_query("SELECT * FROM ".DB_TABLE_TAG_ANNOUNCEMENT." WHERE `announcementID` = :announcement_id", array(
+      ':announcement_id' => intval($id)
+    ));
+    if (!empty($results)) {
+      $tags = array();
+      foreach ($results as $tag) {
+        array_push($tags, get_tag_by_id($tag['tagID']));
+      }
+      return $tags;
+    } else {
+      return null;
+    }
+  }
+
   function create_announcement($title, $description, $teacherID, $start_date, $end_date, $event_date, $event_start, $event_end, $all_day, $urgent) {
     $result = perform_query("INSERT INTO ".DB_TABLE_ANNOUNCEMENTS." (`name`, `description`, `teacherID`, `startDate`, `endDate`, `eventDate`, `eventStartTime`, `eventEndTime`, `allDay`, `urgent`, `approved`, `timeSubmitted`) VALUES (:name, :description, :teacherID, :startDate, :endDate, :eventDate, :eventStartTime, :eventEndTime, :allDay, :urgent, :approved, CURRENT_TIMESTAMP)", array(
       ':name' => $title,

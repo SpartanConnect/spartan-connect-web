@@ -369,3 +369,25 @@ table tr:hover .admin-announcement-id, table tr:hover .user-announcement-id {
   font-size: 0.8em;
   font-family: Overpass, sans-serif;
 }
+
+/* Tags Styling */
+
+.tags-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tags-list li {
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.announcement-tag {
+  font-size: 0.8em;
+  cursor: default;
+  padding: 4px 6px;
+  background-color: #bfbfbf;
+  border-radius: 6px;
+}
