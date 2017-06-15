@@ -41,7 +41,9 @@
         </div>
         <br>
       </form><br>
-      <button class="download" onclick="window.open('download.php')">Download All Announcements</button>
+      <center>
+        <button class="download" onclick="window.open('download.php')">Download All Announcements</button>
+      </center>
     </div>
     <script>
       var isSelected = false;
@@ -86,7 +88,6 @@
       });
 
       function refreshAnnouncements(cat) {
-        $('#announcements-container').html('');
         $.ajax({
           method: "GET",
           url: "api/get_announcements.php",
@@ -96,8 +97,9 @@
           dataType: "json"
         }).done(function(data) {
           if (data.length == 0) {
-            $('#announcements-container').html('We could not find an announcement with the selected categories.');
+            $('#announcements-container').html('<?php print_alert_warning("We could not find an announcement with the selected categories.", "WARNING", null, true) ?>');
           } else {
+            $('#announcements-container').html('');
             for (i = 0; i < data.length; i++) {
               // Handle Display
               $("#announcement-display-0").clone().prop('id', 'announcement-display-'+(i+1)).prop('style','').appendTo('#announcements-container');
@@ -108,10 +110,8 @@
               $("#announcement-display-"+(i+1)+" .announcement-description").html(data[i].description);
 
               // Handle Tags
-              console.log(data[i].tags);
               if (data[i].tags != null) {
                 for (id in data[i].tags) {
-                  console.log(data[i].tags[id]);
                   $("#announcement-display-"+(i+1)+" .tags-list").append('<li class="announcement-tag">'+data[i].tags[id].name+'</li>');
                 }
               } else {
