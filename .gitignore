@@ -7,6 +7,10 @@ includes/secret.php
 composer.phar
 /vendor/
 
+# Unused Files
+favicon.old.old.png
+favicon.old.png
+
 # Unwanted folders
 /bower_components/
 /node_modules/
