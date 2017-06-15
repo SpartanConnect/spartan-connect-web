@@ -46,6 +46,13 @@
     ))[0]['name'];
   }
 
+  function get_teacher_email($id) {
+    return perform_query("SELECT * FROM ".DB_TABLE_TEACHERS." WHERE `id` = :id", array(
+      ':id' => $id
+    ))[0]['email'];
+  }
+
+
   function get_teacher_id($email) {
     return perform_query("SELECT * FROM ".DB_TABLE_TEACHERS." WHERE `email` = :email", array(
       ':email' => $email
