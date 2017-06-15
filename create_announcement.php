@@ -79,6 +79,7 @@
                 } else {
                   selectCounter = selectCounter + 1;
                   $("#announce_tag_select_1").clone().prop("id", "announce_tag_select_"+selectCounter).prop("name", "announce_tag_select_"+selectCounter).appendTo("#announce_tag_selects");
+                  $("#announce_tag_selects").append("&nbsp;");
                   $("#announce_tag_select_"+selectCounter).selectmenu();
                 }
               });
@@ -104,6 +105,7 @@
                   } else {
                     selectCounter = selectCounter + 1;
                     $("#announce_tag_select_1").clone().prop("id", "announce_tag_select_"+selectCounter).prop("name", "announce_tag_select_"+selectCounter).appendTo("#announce_tag_selects");
+                    $("#announce_tag_selects").append("&nbsp;");
                     $("#announce_tag_select_"+selectCounter).selectmenu();
                   }
                 }
