@@ -21,6 +21,7 @@
         <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.min.css">
         <link rel="stylesheet" type="text/css" href="index.css">
+        <link rel="icon" href="favicon.png">
 
         <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
