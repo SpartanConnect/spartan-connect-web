@@ -55,41 +55,42 @@
       </header>';
   }
   function get_footer() {
-    echo '
-    <script src="https://cdn.auth0.com/js/lock/10.16/lock.min.js"></script>
-    <script>
-      var lock = new Auth0Lock(\''.AUTH0_CLIENT_ID.'\', \''.AUTH0_DOMAIN.'\', {
-        container: "login-modal",
-        auth: {
-          redirectUrl: \''.((IS_DEVELOPMENT ? LOCAL_URL : REMOTE_URL).AUTH0_REDIRECT_URI).'\',
-          responseType: \'code\',
-          params: {
-            scope: \'openid\'
-          }
-        },
-        theme: {
-          primaryColor: "#862633",
-          authButtons: {
-            "google-oauth2": {
-              displayName: "@lcusd.net",
-              primaryColor: "#862633",
-              foregroundColor: "#F2A900"
+    if (!$_SESSION['authenticated']) {
+      echo '
+      <script src="https://cdn.auth0.com/js/lock/10.16/lock.min.js"></script>
+      <script>
+        var lock = new Auth0Lock(\''.AUTH0_CLIENT_ID.'\', \''.AUTH0_DOMAIN.'\', {
+          container: "login-modal",
+          auth: {
+            redirectUrl: \''.((IS_DEVELOPMENT ? LOCAL_URL : REMOTE_URL).AUTH0_REDIRECT_URI).'\',
+            responseType: \'code\',
+            params: {
+              scope: \'openid\'
             }
+          },
+          theme: {
+            primaryColor: "#862633",
+            authButtons: {
+              "google-oauth2": {
+                displayName: "@lcusd.net",
+                primaryColor: "#862633",
+                foregroundColor: "#F2A900"
+              }
+            }
+          },
+          languageDictionary: {
+            title: "Spartan Connect"
           }
-        },
-        languageDictionary: {
-          title: "Spartan Connect"
+        });
+        function showModal() {
+          $("#login-modal").toggleClass("hidden");
         }
-      });
-      function showModal() {
-        $("#login-modal").toggleClass("hidden");
-      }
-      $(document).ready(function() {
-        lock.show();
-        //$("#login-modal").toggleClass("hidden");
-      });
-    </script>
-      </body>
-    </html>';
+        $(document).ready(function() {
+          lock.show();
+          //$("#login-modal").toggleClass("hidden");
+        });
+      </script>';
+    }
+    echo '</body></html>';
   }
 ?>
