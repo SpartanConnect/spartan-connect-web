@@ -33,6 +33,7 @@
         <header>
           <div class="header-top">
             <span class="header-top-title" onclick="location.href=\'index.php\'">Spartan Connect</span>
+            <i class="fa fa-bars header-top-mobile" aria-hidden="true"></i>
             <ul class="header-menu">';
       echo '<li onclick="location.href=\'index.php\'" href="#">Home</li>';
       if ($_SESSION['authenticated']) {
@@ -53,6 +54,24 @@
           <div class="header-title-container" onclick="location.href=\'index.php\'">
               <span class="header-title-text">Spartan Connect</span>
           </div>
+          <script>
+            $(document).ready(function() {
+              if ($(".header-top-mobile").css("display") !== "none") {
+                $(".header-menu").slideUp(0);
+              }
+            });
+            $(window).resize(function() {
+              if ($(".header-top-mobile").css("display") !== "none") {
+                $(".header-menu").slideUp(0);
+              }
+              if ($(window).width() > 640) {
+                $(".header-menu").slideDown(0);
+              }
+            });
+            $(".header-top-mobile").click(function() {
+              $(".header-menu").slideToggle();
+            });
+          </script>
       </header>';
   }
   function get_footer() {
