@@ -25,9 +25,9 @@
         <p class="announcement-description"><?php echo $announcement['description']; ?></p>
         <ul class="tags-list">
         <?php $tags = get_tags_by_post_id(intval($announcement['id'])); ?>
-        <?php foreach ($tags as $tag) { ?>
+        <?php if (!empty($tags)) { foreach ($tags as $tag) { ?>
           <li class="announcement-tag"><i class="fa fa-tag"></i> <?php echo $tag['name']; ?></li>
-        <?php } ?>
+        <?php }} ?>
         </ul>
       </div>
     <?php } ?>
