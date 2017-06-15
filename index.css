@@ -402,11 +402,33 @@ table tr:hover .admin-announcement-id, table tr:hover .user-announcement-id {
 .announcement-filter {
   position: fixed;
   bottom: 10px;
-  right: 40px;
+  right: 20px;
   background-color: #efefef;
   padding: 20px;
   border-radius: 6px;
+  font-size: 0.8em;
+  transition: all 500ms ease;
+}
 
+.announcement-filter.hidden {
+  bottom: -440px;
+  background-color: rgba(0,0,0,0);
+  transition: all 500ms ease;
+}
+
+.announcement-filter .announcement-filter-content {
+  opacity: 1;
+  transition: all 500ms ease;
+}
+
+.announcement-filter.hidden .announcement-filter-content {
+  opacity: 0;
+  transition: all 500ms ease;
+}
+
+.filters-list {
+  height: 300px;
+  overflow: scroll;
 }
 
 .filter-list {

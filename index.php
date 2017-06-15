@@ -21,23 +21,28 @@
   </div>
   <div id="announcements-container"></div>
 
-  <div class="announcement-filter">
-    <label>Filter By</label><br><hr>
-    <form>
-      <?php $tags_all = get_tags(); ?>
-      <?php foreach ($tags_all as $tag) { ?>
-        <div class="filter-list" id="filter-list">
-          <label class="filter-list-text"><?php echo $tag['name']; ?></label>
-          <?php print_checkbox("tag-search-".$tag['id'], $tag['id']); ?>
+  <div class="announcement-filter hidden">
+    <center><button id="announcement-filter-toggle">Show Category Filters</button></center><br><br>
+    <div class="announcement-filter-content">
+      <label>Filter By</label><br><hr>
+      <form>
+        <?php $tags_all = get_tags(); ?>
+        <div class="filters-list">
+        <?php foreach ($tags_all as $tag) { ?>
+          <div class="filter-list" id="filter-list">
+            <label class="filter-list-text"><?php echo $tag['name']; ?></label>
+            <?php print_checkbox("tag-search-".$tag['id'], $tag['id']); ?>
+          </div>
+        <?php } ?>
         </div>
-      <?php } ?>
-      <div style="float: right; margin: 10px 0;">
-        <button class="small" id="filter-list-select-all">Select All</button>
-        <button class="small" id="filter-list-search">Search</button>
-      </div>
-      <br>
-    </form><br>
-    <button class="download" onclick="window.open('download.php')">Download All Announcements</button>
+        <div style="float: right; margin: 10px 0;">
+          <button class="small" id="filter-list-select-all">Select All</button>
+          <button class="small" id="filter-list-search">Search</button>
+        </div>
+        <br>
+      </form><br>
+      <button class="download" onclick="window.open('download.php')">Download All Announcements</button>
+    </div>
     <script>
       var isSelected = false;
       $("#filter-list-select-all").click(function(e) {
@@ -61,6 +66,19 @@
         });
         categories = categories.join(",");
         refreshAnnouncements(categories);
+      });
+
+      var filterToggled = false;
+
+      $("#announcement-filter-toggle").click(function(e) {
+        $(".announcement-filter").toggleClass("hidden");
+        if (filterToggled) {
+          $("#announcement-filter-toggle").text("Show Category Filters");
+          filterToggled = false;
+        } else {
+          $("#announcement-filter-toggle").text("Hide Category Filters");
+          filterToggled = true;
+        }
       });
 
       $(document).ready(function(){
