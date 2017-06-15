@@ -17,29 +17,33 @@
     <button onclick="location.href='create_announcement.php'">+ Create New Announcement</button>
   </div>
   <table>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Actions</th>
-    </tr>
-    <?php if (!empty($announcements)) { foreach ($announcements as $announcement) { ?>
-    <tr>
-      <td style="max-width:250px;"><?php echo $announcement['name']; ?> <span class="user-announcement-id">(#<?php echo $announcement['id']; ?>)</span></td>
-      <td style="max-width:650px;"><?php echo $announcement['description']; ?></td>
-      <td class="user-form" style="width:60px;">
-        <div class="action-selectors">
-          <i id="user-deny-<?php echo $announcement['id']; ?>" class="round-touch red fa fa-times user-deny" aria-hidden="true"></i>
-          <i id="user-edit-<?php echo $announcement['id']; ?>" class="round-touch blue fa fa-pencil-square-o user-edit" aria-hidden="true"></i>
-        </div>
-      </td>
-    </tr>
-    <?php }} else { ?>
-    <tr>
-      <td style="max-width:250px;">No announcements</td>
-      <td style="max-width:650px;">Click on '+ Create New Announcement' to create your first announcement.</td>
-      <td class="user-form" style="width:60px;"></td>
-    </tr>
-    <?php } ?>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php if (!empty($announcements)) { foreach ($announcements as $announcement) { ?>
+      <tr>
+        <td style="max-width:250px;"><?php echo $announcement['name']; ?> <span class="user-announcement-id">(#<?php echo $announcement['id']; ?>)</span></td>
+        <td style="max-width:650px;"><?php echo $announcement['description']; ?></td>
+        <td class="user-form" style="width:60px;">
+          <div class="action-selectors">
+            <i id="user-deny-<?php echo $announcement['id']; ?>" class="round-touch red fa fa-times user-deny" aria-hidden="true"></i>
+            <i id="user-edit-<?php echo $announcement['id']; ?>" class="round-touch blue fa fa-pencil-square-o user-edit" aria-hidden="true"></i>
+          </div>
+        </td>
+      </tr>
+      <?php }} else { ?>
+      <tr>
+        <td style="max-width:250px;">No announcements</td>
+        <td style="max-width:650px;">Click on '+ Create New Announcement' to create your first announcement.</td>
+        <td class="user-form" style="width:60px;"></td>
+      </tr>
+      <?php } ?>
+    </tbody>
   </table>
   <br>
   <?php } else {

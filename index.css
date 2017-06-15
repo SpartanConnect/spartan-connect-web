@@ -88,6 +88,9 @@ body {
   .header-top-mobile {
     display: inline-block !important;
   }
+  .announcement {
+    width: 90vw !important;
+  }
 }
 
 
