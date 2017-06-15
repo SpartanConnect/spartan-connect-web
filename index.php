@@ -13,21 +13,6 @@
     $announcements = get_current_announcements();
   ?>
   <h3 style="text-align: center; margin-top: 30px;">Current Announcements</h3>
-  <!--<?php foreach ($announcements as $announcement) {?>
-  <div class="announcement">
-    <small>Posted from <?php echo htmlspecialchars($announcement['startDate']); ?> until <?php echo htmlspecialchars($announcement['endDate']); ?> by <?php echo htmlspecialchars(get_teacher($announcement['teacherID'])); ?></small>
-    <h1><?php echo $announcement['name']; ?></h1>
-    <p><?php echo $announcement['description']; ?></p>
-    <?php $tags = get_tags_by_post_id($announcement['id']); ?>
-    <?php if (!empty($tags)) {?>
-    <ul class="tags-list">
-      <?php foreach ($tags as $tag) { ?>
-        <li class="announcement-tag"><?php echo $tag['name']; ?></li>
-      <?php }?>
-    </ul>
-    <?php } ?>
-  </div>
-  <?php } ?>-->
   <div class="announcement" id="announcement-display-0" style="display: none;">
     <small>Posted from <span class="announcement-start-date">Loading</span> until <span class="announcement-end-date">Loading</span> by <span class="announcement-user">Loading</span></small>
     <h1 class="announcement-title">Loading Announcement Title</h1>
@@ -101,8 +86,8 @@
               $("#announcement-display-"+(i+1)+" .announcement-start-date").text(data[i].startDate);
               $("#announcement-display-"+(i+1)+" .announcement-end-date").text(data[i].endDate);
               $("#announcement-display-"+(i+1)+" .announcement-user").text(data[i].teacherName);
-              $("#announcement-display-"+(i+1)+" .announcement-title").text(data[i].name);
-              $("#announcement-display-"+(i+1)+" .announcement-description").text(data[i].description);
+              $("#announcement-display-"+(i+1)+" .announcement-title").html(data[i].name);
+              $("#announcement-display-"+(i+1)+" .announcement-description").html(data[i].description);
 
               // Handle Tags
               console.log(data[i].tags);

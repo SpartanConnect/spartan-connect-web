@@ -400,12 +400,13 @@ table tr:hover .admin-announcement-id, table tr:hover .user-announcement-id {
 /* Announcement Filter Box (Temporary?) */
 
 .announcement-filter {
-  position: absolute;
-  top: 240px;
+  position: fixed;
+  bottom: 10px;
+  right: 40px;
   background-color: #efefef;
   padding: 20px;
   border-radius: 6px;
-  right: 5vw;
+
 }
 
 .filter-list {
