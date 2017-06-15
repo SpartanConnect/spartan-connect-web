@@ -17,7 +17,7 @@
     if (!validate_date($_POST['announce_start']) || empty($_POST['announce_start'])) {
       array_push($errs, "The start date of the announcement is not formatted correctly.");
     }
-    if (!validate_date($_POST['announce_end']) || empty($_POST['announce_end'])) {
+    if (!validate_date($_POST['announce_end']) || empty($_POST['announce_end']) || format_date($_POST['announce_end']) < format_date($_POST['announce_start'])) {
       array_push($errs, "The end date of the announcement is not formatted correctly.");
     }
     if (!validate_date($_POST['announce_event_date']) || empty($_POST['announce_event_date'])) {
