@@ -411,7 +411,7 @@ table tr:hover .admin-announcement-id, table tr:hover .user-announcement-id {
 }
 
 .announcement-filter.hidden {
-  bottom: -440px;
+  bottom: -420px;
   background-color: rgba(0,0,0,0);
   transition: all 500ms ease;
 }
@@ -427,7 +427,7 @@ table tr:hover .admin-announcement-id, table tr:hover .user-announcement-id {
 }
 
 .filters-list {
-  height: 300px;
+  height: 280px;
   overflow: scroll;
 }
 
