@@ -36,6 +36,32 @@ body {
   }
 }
 
+@media screen and (max-width: 640px) {
+  .alert {
+    text-align: center;
+  }
+  .alert .fa {
+    display: block !important;
+    font-size: 100px;
+    text-align: center;
+    margin: 0 !important;
+  }
+  .alert-text {
+    max-width: 90% !important;
+  }
+  .panel-heading > * {
+    display: block !important;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  .announcement-filter {
+    right: 6vw !important;
+    width: 80vw !important;
+    padding: 4vw !important;
+  }
+}
+
 
 /* Header */
 

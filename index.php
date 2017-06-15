@@ -41,7 +41,9 @@
         </div>
         <br>
       </form><br>
-      <button class="download" onclick="window.open('download.php')">Download All Announcements</button>
+      <center>
+        <button class="download" onclick="window.open('download.php')">Download All Announcements</button>
+      </center>
     </div>
     <script>
       var isSelected = false;
