@@ -41,12 +41,12 @@
         if ($_SESSION['privlevel'] == 1) {
           echo '<li onclick="location.href=\'admin_panel.php\'" href="#">Admin Panel</li>';
         }
-        echo '<li onclick="location.href=\'logout.php\'" href="#">Log Out</li>';
+        echo '<li onclick="location.href=\'logout.php\'" href="#">Log Out</li></ul>';
       } else {
-        echo '<li onclick="showModal();" href="#">Log In</li>';
+        echo '<li onclick="showModal();" href="#">Log In</li></ul>';
         echo '<div id="login-modal"></div>';
       }
-      echo '</ul>
+      echo '
           </div>
           <div class="header-school-container">
               <span class="header-school-text">La Cañada<br>High School</span>
@@ -107,7 +107,7 @@
         }
         $(document).ready(function() {
           lock.show();
-          //$("#login-modal").toggleClass("hidden");
+          $("#login-modal").removeClass("hidden");
         });
       </script>';
     }

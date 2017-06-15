@@ -153,16 +153,16 @@ header {
   background-color: #efefef;
   position: absolute;
   right: 10vw;
-  top: -10px;
+  top: 10px;
   z-index: 99;
-  opacity: 0;
+  opacity: 1;
   -webkit-transition: all 150ms ease;
   transition: all 150ms ease;
 }
 
 #login-modal.hidden {
-  opacity: 1;
-  top: 10px;
+  opacity: 0;
+  top: -10px;
   -webkit-transition: all 150ms ease;
   transition: all 150ms ease;
 }
