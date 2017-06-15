@@ -406,3 +406,19 @@ table tr:hover .admin-announcement-id, table tr:hover .user-announcement-id {
   border-radius: 6px;
   right: 5vw;
 }
+
+.filter-list {
+  display: block;
+  margin: 0 20px;
+  padding: 0;
+  height: 30px;
+}
+
+.filter-list-text {
+  float: left;
+  padding-top: 4px;
+}
+
+.filter-list .checkbox {
+  float: right;
+}

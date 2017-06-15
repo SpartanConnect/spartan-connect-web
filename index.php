@@ -29,12 +29,14 @@
   </div>
   <?php } ?>
   <div class="announcement-filter">
-    <label>Filter By</label><br>
+    <label>Filter By</label><br><hr>
     <form>
       <?php $tags_all = get_tags(); ?>
       <?php foreach ($tags_all as $tag) { ?>
-        <label><?php echo $tag['name']; ?></label>
-        <?php print_checkbox("tag-search-".$tag['id'], $tag['id']); ?><br>
+        <div class="filter-list">
+          <label class="filter-list-text"><?php echo $tag['name']; ?></label>
+          <?php print_checkbox("tag-search-".$tag['id'], $tag['id']); ?>
+        </div>
       <?php } ?>
     </form><br>
     <button class="download" onclick="window.open('download.php')">Download All Announcements</button>
