@@ -29,7 +29,7 @@ $(document).ready(function() {
       }
     }
   });
-  edit_dialog = $("#admin-dialog-edit").dialog({
+  urgent_dialog = $("#admin-dialog-urgency").dialog({
     autoOpen: false,
     resizable: false,
     height: "auto",
@@ -42,28 +42,60 @@ $(document).ready(function() {
     }
   });
 
-  function return_announcement(id, type, dialog) {
+  $("#admin-actions-list").selectmenu({
+    change: function(e, ui) {
+      return_announcement(0, ui.item.value);
+    }
+  });
+
+  // Select all elements
+  $("#admin-select-all").click(function() {
+    if ($('#admin-select-all').prop('checked')) {
+      $(".admin-form input[type='checkbox']").prop('checked', true);
+    } else {
+      $(".admin-form input[type='checkbox']").prop('checked', false);
+    }
+  });
+
+  var selectedCount = 0;
+
+  $(".admin-form input[type='checkbox']").change(function() {
+    selectedCount = $(".admin-form-td input[type='checkbox']:checked").length;
+    if (selectedCount === 0) {
+      $("#admin-actions-list").selectmenu("disable");
+      $("#admin-actions-list").selectmenu("refresh");
+    } else {
+      $("#admin-actions-list").selectmenu("enable");
+      $("#admin-actions-list-approve").text("Approve "+selectedCount+" Announcement(s)");
+      $("#admin-actions-list-urgent").text("Set "+selectedCount+" Announcement(s) To Urgent");
+      $("#admin-actions-list-deny").text("Deny "+selectedCount+" Announcement(s)");
+      $("#admin-actions-list").selectmenu("refresh");
+    }
+  });
+
+  function return_announcement(ids, type) {
     $.ajax({
       method: "GET",
-      url: "api/get_announcement_by_id.php",
+      url: "api/get_announcements.php",
       data: {
-        "announcement_id": parseInt(id.replace('admin-'+type+'-', ''))
+        "ids": parseInt(ids)
       },
       dataType: "json"
     }).done(function(data) {
-      $("#admin-dialog-"+type+"-heading").text(data.name);
-      $("#admin-dialog-"+type+"-description").text(data.description);
-      dialog.dialog("open");
+      switch(type) {
+        case "approve":
+          approve_dialog.dialog("open");
+          break;
+        case "urgent":
+          urgent_dialog.dialog("open");
+          break;
+        case "deny":
+          deny_dialog.dialog("open");
+          break;
+        default:
+          break;
+      }
     });
   }
 
-  $(".admin-approve").click(function() {
-    return_announcement($(this).attr('id'), "approve", approve_dialog);
-  });
-  $(".admin-deny").click(function() {
-    return_announcement($(this).attr('id'), "deny", deny_dialog);
-  });
-  $(".admin-edit").click(function() {
-    return_announcement($(this).attr('id'), "edit", edit_dialog);
-  });
 });

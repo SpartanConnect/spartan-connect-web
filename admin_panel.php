@@ -14,26 +14,46 @@
   ?>
   <div class="panel-heading">
     <h3>Unapproved Announcements</h3>
+    <select id="admin-actions-list" disabled="disabled">
+      <option selected>-- Select an Action --</option>
+      <option id="admin-actions-list-approve" class="admin-list-action" value="approve">Approve Announcement</option>
+      <option id="admin-actions-list-deny" class="admin-list-action" value="deny">Deny Announcement</option>
+      <option id="admin-actions-list-urgent" class="admin-list-action" value="urgent">Set Announcement to Urgent</option>
+    </select>
   </div>
   <table>
     <thead>
       <tr>
+        <th class="admin-form"><?php print_checkbox("admin-select-all", "all"); ?></th>
         <th>Title</th>
         <th>Description</th>
-        <th>Actions</th>
+        <th>Submitted By</th>
+        <th>Tags</th>
       </tr>
     </thead>
     <tbody>
       <?php foreach ($announcements as $announcement) { ?>
       <tr>
-        <td style="max-width:250px;"><?php echo $announcement['name'] ?> <span class="admin-announcement-id">(#<?php echo $announcement['id']; ?>)</span></td>
-        <td style="max-width:610px;"><?php echo $announcement['description'] ?></td>
-        <td class="admin-form" style="width:100px;">
-          <div class="action-selectors">
-            <i id="admin-deny-<?php echo $announcement['id']; ?>" class="round-touch red fa fa-times admin-deny" aria-hidden="true"></i>
-            <i id="admin-edit-<?php echo $announcement['id']; ?>" class="round-touch blue fa fa-pencil-square-o admin-edit" aria-hidden="true"></i>
-            <i id="admin-approve-<?php echo $announcement['id']; ?>" class="round-touch green fa fa-check admin-approve" aria-hidden="true"></i>
-          </div>
+        <td class="admin-form admin-form-td" style="width:30px;">
+          <?php print_checkbox("admin-select-".$announcement['id'], $announcement['id']); ?>
+        </td>
+        <td style="max-width:150px;"><?php echo $announcement['name'] ?> <span class="admin-announcement-id">(#<?php echo $announcement['id']; ?>)</span></td>
+        <td style="max-width:450px;"><?php echo $announcement['description'] ?></td>
+        <td style="max-width:120px;"><?php echo get_teacher($announcement['teacherID']); ?></td>
+        <td style="max-width:200px;">
+          <?php
+            $announcement_tags = get_tags_by_post_id($announcement['id']);
+            if (!empty($announcement_tags)) {
+              $tags_string = array();
+              foreach ($announcement_tags as $tag) {
+                $tags_string[] = $tag['name'];
+              }
+              $tags_string = implode($tags_string, ', ');
+              echo $tags_string;
+            } else {
+              echo "(none)";
+            }
+          ?>
         </td>
       </tr>
       <?php } ?>
@@ -44,22 +64,18 @@
   <?php
     print_dialog_panel_announcement(
       "admin-dialog-approve",
-      "Approve Announcement",
-      "Are you sure you want to approve this announcement?"
+      "Approve Announcements",
+      "Are you sure you want to approve the following announcements?"
     );
     print_dialog_panel_announcement(
       "admin-dialog-deny",
-      "Deny Announcement",
-      "Are you sure you want to deny this announcement?"
+      "Deny Announcements",
+      "Are you sure you want to deny the following announcements?"
     );
     print_dialog_panel_announcement(
-      "admin-dialog-edit",
-      "Edit Announcement",
-      null,
-      '<form>
-        <label>Is Urgent:</label> <input name="urgent" type="checkbox" value="yes"/><br><br>
-        <input name="submit" type="submit" value="Submit"/>
-      </form>'
+      "admin-dialog-urgency",
+      "Set Announcements to Urgent",
+      "Are you sure you want to set the following announcements to urgent?"
     );
   } else {
     print_alert_noaccess();

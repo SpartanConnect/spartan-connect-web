@@ -1,9 +1,10 @@
 <?php
   include('secret.php');
 
+  // TODO: Pull these details from announcements.php using $id
   function deny_announcement($name, $email, $reason, $announcement_title, $announcement_description) {
     $link = LOCAL_URL."user_panel.php";
-    $subject = "Rejected Announcement";
+    $subject = "Rejected Announcement '".$name."'";
     $body = <<<EOF
 
 ===========================

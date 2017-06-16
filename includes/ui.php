@@ -53,10 +53,10 @@
   function print_dialog_panel_announcement($tag, $title, $description = null, $html = null) {
     $content = "";
     if (!empty($description)) { $content = $content."<p>".$description."</p>"; }
-    $content = $content.'<div class="announcement">
-      <h1 id="'.$tag.'-heading">Loading Announcement...</h1>
+    $content = $content.'<div class="admin-announcements" id="'.$tag.'-announcements"><div class="admin-announcement" id="admin-announcement-0">
+      <h3 id="'.$tag.'-heading">Loading Announcement...</h3>
       <p id="'.$tag.'-description">Loading Announcement...</p>
-    </div>';
+    </div></div>';
     if (!empty($html)) { $content = $content.$html; }
     print_dialog($tag, $title, $content);
   }
