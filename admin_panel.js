@@ -7,9 +7,11 @@ $(document).ready(function() {
     modal: true,
     buttons: {
       Cancel: function() {
+        closeOutDialog();
         $(this).dialog("close");
       },
-      "Approve Announcement": function() {
+      "Approve Announcements": function() {
+        closeOutDialog();
         $(this).dialog("close");
       }
     }
@@ -22,14 +24,16 @@ $(document).ready(function() {
     modal: true,
     buttons: {
       Cancel: function() {
+        closeOutDialog();
         $(this).dialog("close");
       },
-      "Deny Announcement": function() {
+      "Deny Announcements": function() {
+        closeOutDialog();
         $(this).dialog("close");
       }
     }
   });
-  urgent_dialog = $("#admin-dialog-urgency").dialog({
+  urgent_dialog = $("#admin-dialog-urgent").dialog({
     autoOpen: false,
     resizable: false,
     height: "auto",
@@ -37,14 +41,25 @@ $(document).ready(function() {
     modal: true,
     buttons: {
       Cancel: function() {
+        closeOutDialog();
+        $(this).dialog("close");
+      },
+      "Set Announcements to Urgent": function() {
+        closeOutDialog();
         $(this).dialog("close");
       }
     }
   });
 
+  function closeOutDialog() {
+    $(".admin-list-action").prop('selected', false);
+    $("#admin-actions-list-default").prop('selected', true);
+    $("#admin-actions-list").selectmenu("refresh");
+  }
+
   $("#admin-actions-list").selectmenu({
     change: function(e, ui) {
-      return_announcement(0, ui.item.value);
+      return_announcement(selectedAnnouncements.join(','), ui.item.value);
     }
   });
 
@@ -58,8 +73,10 @@ $(document).ready(function() {
   });
 
   var selectedCount = 0;
+  var selectedAnnouncements = [];
 
   $(".admin-form input[type='checkbox']").change(function() {
+    selectedAnnouncements = [];
     selectedCount = $(".admin-form-td input[type='checkbox']:checked").length;
     if (selectedCount === 0) {
       $("#admin-actions-list").selectmenu("disable");
@@ -71,17 +88,49 @@ $(document).ready(function() {
       $("#admin-actions-list-deny").text("Deny "+selectedCount+" Announcement(s)");
       $("#admin-actions-list").selectmenu("refresh");
     }
+    $('.admin-form-td :checked').each(function() {
+      selectedAnnouncements.push($(this).val());
+    });
+    console.log(selectedAnnouncements);
   });
 
+  $(".admin-announcement-0").hide();
+
   function return_announcement(ids, type) {
+    $("#admin-actions-list").selectmenu("disable");
+    $("#admin-actions-list").selectmenu("refresh");
     $.ajax({
       method: "GET",
       url: "api/get_announcements.php",
       data: {
-        "ids": parseInt(ids)
+        "announcementIds": ids
       },
       dataType: "json"
     }).done(function(data) {
+      var count = 0;
+      $("#admin-dialog-"+type+"-announcements .residue").remove();
+      for (var announcementId in data) {
+        count = count + 1;
+        if (count <= 3) {
+          var announcement = $("#admin-dialog-"+type+"-announcements .admin-announcement-0").clone().removeClass('admin-announcement-0').addClass("residue").show();
+          $(announcement).children(".admin-dialog-"+type+"-heading").text(data[announcementId].name);
+          $(announcement).children(".admin-dialog-"+type+"-description").text(data[announcementId].description);
+          $(announcement).children(".admin-dialog-"+type+"-author").text(data[announcementId].teacherName);
+          if (data[announcementId].tagsString !== "") {
+            $(announcement).children(".admin-dialog-"+type+"-tags").text("Tags: "+data[announcementId].tagsString);
+          } else {
+            $(announcement).children(".admin-dialog-"+type+"-tags").text("Tags: None");
+          }
+          $(announcement).appendTo("#admin-dialog-"+type+"-announcements");
+        } else {
+          $("#admin-dialog-"+type+"-announcements").append("<br class='residue'><i class='residue'>Plus "+(selectedAnnouncements.length-count+1)+" more...</i>");
+          break;
+        }
+      }
+
+      $("#admin-actions-list").selectmenu("enable");
+      $("#admin-actions-list").selectmenu("refresh");
+
       switch(type) {
         case "approve":
           approve_dialog.dialog("open");

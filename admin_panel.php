@@ -15,7 +15,7 @@
   <div class="panel-heading">
     <h3>Unapproved Announcements</h3>
     <select id="admin-actions-list" disabled="disabled">
-      <option selected>-- Select an Action --</option>
+      <option id="admin-actions-list-default" selected>-- Select an Action --</option>
       <option id="admin-actions-list-approve" class="admin-list-action" value="approve">Approve Announcement</option>
       <option id="admin-actions-list-deny" class="admin-list-action" value="deny">Deny Announcement</option>
       <option id="admin-actions-list-urgent" class="admin-list-action" value="urgent">Set Announcement to Urgent</option>
@@ -48,7 +48,7 @@
               foreach ($announcement_tags as $tag) {
                 $tags_string[] = $tag['name'];
               }
-              $tags_string = implode($tags_string, ', ');
+              $tags_string = implode(', ', $tags_string);
               echo $tags_string;
             } else {
               echo "(none)";
@@ -73,7 +73,7 @@
       "Are you sure you want to deny the following announcements?"
     );
     print_dialog_panel_announcement(
-      "admin-dialog-urgency",
+      "admin-dialog-urgent",
       "Set Announcements to Urgent",
       "Are you sure you want to set the following announcements to urgent?"
     );

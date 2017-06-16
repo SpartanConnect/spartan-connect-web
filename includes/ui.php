@@ -53,9 +53,11 @@
   function print_dialog_panel_announcement($tag, $title, $description = null, $html = null) {
     $content = "";
     if (!empty($description)) { $content = $content."<p>".$description."</p>"; }
-    $content = $content.'<div class="admin-announcements" id="'.$tag.'-announcements"><div class="admin-announcement" id="admin-announcement-0">
-      <h3 id="'.$tag.'-heading">Loading Announcement...</h3>
-      <p id="'.$tag.'-description">Loading Announcement...</p>
+    $content = $content.'<div class="admin-announcements" id="'.$tag.'-announcements"><div class="admin-announcement admin-announcement-0">
+      <h3 class="'.$tag.'-heading">Loading Announcement...</h3>
+      <i class="heading '.$tag.'-author">Loading Author...</i>
+      <p class="'.$tag.'-description">Loading Announcement...</p>
+      <i class="heading '.$tag.'-tags">Tags: (none)</i>
     </div></div>';
     if (!empty($html)) { $content = $content.$html; }
     print_dialog($tag, $title, $content);
