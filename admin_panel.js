@@ -5,12 +5,14 @@ $(document).ready(function() {
     height: "auto",
     width: 600,
     modal: true,
+    closeOnEscape: false,
     buttons: {
       Cancel: function() {
         closeOutDialog();
         $(this).dialog("close");
       },
       "Approve Announcements": function() {
+        removeCurrentAnnouncements();
         closeOutDialog();
         $(this).dialog("close");
       }
@@ -22,12 +24,14 @@ $(document).ready(function() {
     height: "auto",
     width: 600,
     modal: true,
+    closeOnEscape: false,
     buttons: {
       Cancel: function() {
         closeOutDialog();
         $(this).dialog("close");
       },
       "Deny Announcements": function() {
+        removeCurrentAnnouncements();
         closeOutDialog();
         $(this).dialog("close");
       }
@@ -39,17 +43,30 @@ $(document).ready(function() {
     height: "auto",
     width: 600,
     modal: true,
+    closeOnEscape: false,
     buttons: {
       Cancel: function() {
         closeOutDialog();
         $(this).dialog("close");
       },
       "Set Announcements to Urgent": function() {
+        removeCurrentAnnouncements();
         closeOutDialog();
         $(this).dialog("close");
       }
     }
   });
+
+  function removeCurrentAnnouncements() {
+    for (var announce in selectedAnnouncements) {
+      $("#announcement-row-"+selectedAnnouncements[announce]).remove();
+    }
+    $(".admin-form input[type='checkbox']").prop('checked', false);
+    selectedAnnouncements = [];
+    if ($(".admin-form-td input[type='checkbox']").length === 0) {
+      location.reload();
+    }
+  }
 
   function closeOutDialog() {
     $(".admin-list-action").prop('selected', false);

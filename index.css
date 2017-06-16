@@ -578,3 +578,7 @@ table tr:hover .admin-announcement-id, table tr:hover .user-announcement-id {
   font-size: 0.8em;
   color: #5f5f5f;
 }
+
+.ui-dialog-titlebar-close {
+  display: none;
+}

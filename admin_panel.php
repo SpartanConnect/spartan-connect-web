@@ -33,7 +33,7 @@
     </thead>
     <tbody>
       <?php foreach ($announcements as $announcement) { ?>
-      <tr>
+      <tr id="announcement-row-<?php echo $announcement['id'] ?>">
         <td class="admin-form admin-form-td" style="width:30px;">
           <?php print_checkbox("admin-select-".$announcement['id'], $announcement['id']); ?>
         </td>
