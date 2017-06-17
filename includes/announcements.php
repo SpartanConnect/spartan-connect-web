@@ -9,14 +9,23 @@
   function get_approved_announcements() {
     return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `approved`=1", array());
   }
+
   function get_announcement_by_id($id) {
     return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `id` = :id", array(
       ':id' => $id
     ))[0];
   }
 
-  function delete_announcement_by_id($id) {
-    return perform_query("DELETE FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `id` = :id", array());
+  function deny_announcement($id) {
+    return perform_query("UPDATE ".DB_TABLE_ANNOUNCEMENTS." SET `approved`=2 WHERE `id` = :id", array(
+      ':id' => $id
+    ));
+  }
+
+  function approve_announcement($id){
+    return perform_query("UPDATE ".DB_TABLE_ANNOUNCEMENTS." SET `approved`=1 WHERE `id` = :id", array(
+      ':id' => $id
+    ));
   }
 
   function get_current_announcements() {
@@ -40,6 +49,12 @@
     ));
   }
 
+  function get_all_teacher($id){
+    return perform_query("SELECT * FROM ".DB_TABLE_TEACHERS." WHERE `id` = :id", array(
+      ':id' => $id
+    ))[0];
+  }
+
   function get_teacher($id) {
     return perform_query("SELECT * FROM ".DB_TABLE_TEACHERS." WHERE `id` = :id", array(
       ':id' => $id
@@ -51,7 +66,6 @@
       ':id' => $id
     ))[0]['email'];
   }
-
 
   function get_teacher_id($email) {
     return perform_query("SELECT * FROM ".DB_TABLE_TEACHERS." WHERE `email` = :email", array(

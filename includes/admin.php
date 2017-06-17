@@ -1,10 +1,18 @@
 <?php
   include('secret.php');
+  include('announcements.php');
 
-  // TODO: Pull these details from announcements.php using $id
-  function deny_announcement($name, $email, $reason, $announcement_title, $announcement_description) {
+
+  function deny_announcement($id, $reason) {
+    $announcement = get_announcement_by_id($id);
+    $teacher = get_all_teacher($id);
+    $name = $teacher['name'];
+    $email = $teacher['email'];
+    $announcement_title = $announcement['name'];
+    $announcement_description = $announcement['description'];
+
     $link = LOCAL_URL."user_panel.php";
-    $subject = "Rejected Announcement '".$name."'";
+    $subject = "Rejected Announcement '".$announcement_title."'";
     $body = <<<EOF
 
 ===========================
@@ -33,9 +41,11 @@ EOF;
         'Reply-To: studentdevteam@lcusd.net'."\r\n".
         'X-Mailer: PHP/'.phpversion();
     mail($email, $subject, $body, $headers);
+    deny_announcement($id);
   }
-  function allow_announcement() {
-    // code to allow announcement here...
+  function allow_announcement($id)
+  {
+    approve_announcement($id);
   }
   function edit_announcement() {
     // code to edit announcement here...
