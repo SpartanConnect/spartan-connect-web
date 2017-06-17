@@ -6,6 +6,21 @@
     return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS, array());
   }
 
+  function update_announcement($id, $name, $description, $startDate, $endDate, $eventStartTime, $eventEndTime, $approved = 0, $urgent = 0)
+  {
+    return perform_query("UPDATE ".DB_TABLE_ANNOUNCEMENTS." SET `urgent`=:urgent, `name`=:name, `description`=:description, `startDate`=:startDate, `endDate`=:endDate, `eventStartTime`=:eventStartTime, `eventEndTime`=:eventEndTime, `approved`=:approved WHERE `id`=:id", array(
+      ':id' => $id
+      `:name` => $name
+      `:description` => $description
+      `:startDate` => $startDate
+      `:endDate` => $startDate
+      `:eventStartTime` => $eventStartTime
+      `:eventEndTime` => $eventEndTime
+      ':urgent' => $urgent
+      ':approved' => $approved
+    ));
+  }
+
   function get_approved_announcements() {
     return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `approved`=1", array());
   }
