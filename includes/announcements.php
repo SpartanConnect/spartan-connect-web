@@ -6,8 +6,9 @@
     return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS, array());
   }
 
-  function update_announcement($id, $name, $description, $startDate, $endDate, $eventStartTime, $eventEndTime, $approved = 0, $urgent = 0)
-  {
+  // I think we should split this function up into its arguments (eg. update_announcement_name, update_announcement_description, etc.)
+  /*
+  function update_announcement($id, $name, $description, $startDate, $endDate, $eventStartTime, $eventEndTime, $approved = 0, $urgent = 0){
     return perform_query("UPDATE ".DB_TABLE_ANNOUNCEMENTS." SET `urgent`=:urgent, `name`=:name, `description`=:description, `startDate`=:startDate, `endDate`=:endDate, `eventStartTime`=:eventStartTime, `eventEndTime`=:eventEndTime, `approved`=:approved WHERE `id`=:id", array(
       ':id' => $id,
       `:name` => $name,
@@ -19,7 +20,7 @@
       ':urgent' => $urgent,
       ':approved' => $approved
     ));
-  }
+  }*/
 
   function get_approved_announcements() {
     return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `approved`=1", array());
@@ -31,15 +32,28 @@
     ))[0];
   }
 
-  function deny_announcement($id, $reason) {
+  function update_announcement_approve($id) {
+    perform_query("UPDATE ".DB_TABLE_ANNOUNCEMENTS." SET `approved` = 1 WHERE `id` = :id", array(
+      ':id' => $id
+    ));
+  }
+
+  function update_announcement_deny($id, $reason) {
+    perform_query("UPDATE ".DB_TABLE_ANNOUNCEMENTS." SET `approved` = 2 WHERE `id` = :id", array(
+      ':id' => $id
+    ));
+
+    // Retrieve the announcement
     $announcement = get_announcement_by_id($id);
-    $teacher = get_all_teacher($id);
-    $name = $teacher['name'];
-    $email = $teacher['email'];
+
+    // Get teacher to contact
+    $name = get_teacher($announcement['id']);
+    $email = get_teacher_email($announcement['id']);
+
     $announcement_title = $announcement['name'];
     $announcement_description = $announcement['description'];
 
-    $link = LOCAL_URL."user_panel.php";
+    $link = (IS_DEVELOPMENT ? LOCAL_URL : REMOTE_URL)."user_panel.php";
     $subject = "Rejected Announcement '".$announcement_title."'";
     $body = <<<EOF
 
@@ -69,13 +83,11 @@ EOF;
         'Reply-To: studentdevteam@lcusd.net'."\r\n".
         'X-Mailer: PHP/'.phpversion();
     mail($email, $subject, $body, $headers);
-    perform_query("UPDATE ".DB_TABLE_ANNOUNCEMENTS." SET `approved`=2 WHERE `id` = :id", array(
-      ':id' => $id
-    ));
   }
 
-  function approve_announcement($id){
-    return perform_query("UPDATE ".DB_TABLE_ANNOUNCEMENTS." SET `approved`=1 WHERE `id` = :id", array(
+  function update_announcement_urgent($id, $urgent = 1) {
+    perform_query("UPDATE ".DB_TABLE_ANNOUNCEMENTS." SET `urgent` = :urgent WHERE `id` = :id", array(
+      ':urgent' => $urgent,
       ':id' => $id
     ));
   }
@@ -101,12 +113,15 @@ EOF;
     ));
   }
 
+  /*
+  // All of the functions needed to get the teacher details are already present.
   function get_all_teacher($id){
     return perform_query("SELECT * FROM ".DB_TABLE_TEACHERS." WHERE `id` = :id", array(
       ':id' => $id
     ))[0];
-  }
+  }*/
 
+  // TODO: rename to get_teacher_name
   function get_teacher($id) {
     return perform_query("SELECT * FROM ".DB_TABLE_TEACHERS." WHERE `id` = :id", array(
       ':id' => $id

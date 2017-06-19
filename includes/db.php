@@ -25,13 +25,14 @@
       $query->execute($parameters);
 
       if ($query->rowCount()) {
-        $row = $query->fetchAll();
+        $rows = $query->fetchAll();
         if ($selecting) {
-          return $row;
+          return $rows;
         } else {
           return $query->rowCount();
         }
       } else {
+        // TODO: Merge get_last_inserted_id() with this
         return null;
       }
     } catch(PDOException $e) {
