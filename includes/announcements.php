@@ -78,7 +78,7 @@ You may edit and resubmit your announcement by going to {$link}.
 
 Do not reply to this email.
 EOF;
-    $headers = "From: ".(IS_DEVELOPMENT ? LOCAL_EMAIL : REMOTE_EMAIL)."\r\n".
+    $headers = "From: Spartan Connect <".(IS_DEVELOPMENT ? LOCAL_EMAIL : REMOTE_EMAIL).">\r\n".
         "Reply-To: ".(IS_DEVELOPMENT ? LOCAL_EMAIL : REMOTE_EMAIL)."\r\n".
         "X-Mailer: PHP/".phpversion();
     mail($email, $subject, $body, $headers);
