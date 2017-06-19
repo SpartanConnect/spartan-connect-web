@@ -34,7 +34,7 @@
           $result['success'] = true;
           break;
         case 2:     // Denial
-          $success = update_announcement_deny(intval($_POST['id']), $_POST['setReason']);
+          update_announcement_deny(intval($_POST['id']), $_POST['setReason']);
           $result['success'] = true;
           break;
       }

@@ -81,7 +81,7 @@ EOF;
     $headers = "From: ".(IS_DEVELOPMENT ? LOCAL_EMAIL : REMOTE_EMAIL)."\r\n".
         "Reply-To: ".(IS_DEVELOPMENT ? LOCAL_EMAIL : REMOTE_EMAIL)."\r\n".
         "X-Mailer: PHP/".phpversion();
-    $result = mail($email, $subject, $body, $headers);
+    mail($email, $subject, $body, $headers);
   }
 
   function update_announcement_urgent($id, $urgent = 1) {
