@@ -26,4 +26,5 @@
   define("DB_TABLE_TAG_ANNOUNCEMENT", "tag_announcement");  // many-many table from tags to announcements
 
   define("DEVELOPMENT_EMAIL", "xxxxx@xxxxx.com");           // Used to email you denials
+  define("LOCAL_EMAIL", "xxxxx@xxxxx.com");                 // Emails you denials
 ?>

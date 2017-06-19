@@ -48,7 +48,7 @@
 
     // Get teacher to contact
     $name = get_teacher($announcement['id']);
-    $email = get_teacher_email($announcement['id']);
+    $email = (IS_DEVELOPMENT ? DEVELOPMENT_EMAIL : get_teacher_email($announcement['id']));
 
     $announcement_title = $announcement['name'];
     $announcement_description = $announcement['description'];
@@ -78,11 +78,10 @@ You may edit and resubmit your announcement by going to {$link}.
 
 Do not reply to this email.
 EOF;
-    $headers = 'To: '.$name.' '.$email."\r\n".
-        'From: studentdevteam@lcusd.net'."\r\n".
-        'Reply-To: studentdevteam@lcusd.net'."\r\n".
-        'X-Mailer: PHP/'.phpversion();
-    mail($email, $subject, $body, $headers);
+    $headers = "From: ".(IS_DEVELOPMENT ? LOCAL_EMAIL : REMOTE_EMAIL)."\r\n".
+        "Reply-To: ".(IS_DEVELOPMENT ? LOCAL_EMAIL : REMOTE_EMAIL)."\r\n".
+        "X-Mailer: PHP/".phpversion();
+    $result = mail($email, $subject, $body, $headers);
   }
 
   function update_announcement_urgent($id, $urgent = 1) {

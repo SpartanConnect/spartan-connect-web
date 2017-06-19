@@ -105,7 +105,6 @@ $(document).ready(function() {
   }
 
   function removeAnnouncement(id) {
-    console.log(id);
     $("#announcement-row-"+id).remove();
 
     if ($(".admin-form-td input[type='checkbox']").length === 0) {
@@ -179,7 +178,6 @@ $(document).ready(function() {
     $('.admin-form-td :checked').each(function() {
       selectedAnnouncements.push($(this).val());
     });
-    console.log(selectedAnnouncements);
   });
 
   $(".admin-announcement-0").hide();
