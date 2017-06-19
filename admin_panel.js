@@ -1,4 +1,10 @@
 $(document).ready(function() {
+
+  var selectedCount = 0;
+  var selectedAnnouncements = [];
+  var affectedAnnouncements = [];
+  var selectedAction = "";
+
   approve_dialog = $("#admin-dialog-approve").dialog({
     autoOpen: false,
     resizable: false,
@@ -12,12 +18,22 @@ $(document).ready(function() {
         $(this).dialog("close");
       },
       "Approve Announcements": function() {
-        removeCurrentAnnouncements();
-        closeOutDialog();
-        $(this).dialog("close");
+        selectedAction = "approve";
+        for (var id in selectedAnnouncements) {
+          $.ajax({
+            method: "POST",
+            url: "api/update_announcement.php",
+            data: {
+              "id": selectedAnnouncements[id],
+              "setApproved": 1
+            },
+            dataType: "json"
+          }).done(ajaxUpdateAnnouncementCallback);
+        }
       }
     }
   });
+
   deny_dialog = $("#admin-dialog-deny").dialog({
     autoOpen: false,
     resizable: false,
@@ -31,12 +47,23 @@ $(document).ready(function() {
         $(this).dialog("close");
       },
       "Deny Announcements": function() {
-        removeCurrentAnnouncements();
-        closeOutDialog();
-        $(this).dialog("close");
+        selectedAction = "deny";
+        for (var id in selectedAnnouncements) {
+          $.ajax({
+            method: "POST",
+            url: "api/update_announcement.php",
+            data: {
+              "id": selectedAnnouncements[id],
+              "setApproved": 2,
+              "setReason": "Feature not implemented yet"
+            },
+            dataType: "json"
+          }).done(ajaxUpdateAnnouncementCallback);
+        }
       }
     }
   });
+
   urgent_dialog = $("#admin-dialog-urgent").dialog({
     autoOpen: false,
     resizable: false,
@@ -50,9 +77,18 @@ $(document).ready(function() {
         $(this).dialog("close");
       },
       "Set Announcements to Urgent": function() {
-        removeCurrentAnnouncements();
-        closeOutDialog();
-        $(this).dialog("close");
+        selectedAction = "urgent";
+        for (var id in selectedAnnouncements) {
+          $.ajax({
+            method: "POST",
+            url: "api/update_announcement.php",
+            data: {
+              "id": selectedAnnouncements[id],
+              "setUrgent": 1
+            },
+            dataType: "json"
+          }).done(ajaxUpdateAnnouncementCallback);
+        }
       }
     }
   });
@@ -68,10 +104,48 @@ $(document).ready(function() {
     }
   }
 
+  function removeAnnouncement(id) {
+    console.log(id);
+    $("#announcement-row-"+id).remove();
+
+    if ($(".admin-form-td input[type='checkbox']").length === 0) {
+      location.reload();
+    }
+  }
+
+  function ajaxUpdateAnnouncementCallback(data) {
+    if (data.success === true) {
+      affectedAnnouncements.push(data.id);
+      if (selectedAction === "approve" || selectedAction === "deny") {
+        removeAnnouncement(data.id);
+      }
+    } else {
+      alert("Failed to update announcement #"+data.id+".");
+    }
+    if (affectedAnnouncements.length === selectedAnnouncements.length) {
+      affectedAnnouncements = [];
+      currentAnnouncements = [];
+      $(".admin-form input[type='checkbox']").prop('checked', false);
+      closeOutDialog();
+    }
+  }
+
   function closeOutDialog() {
     $(".admin-list-action").prop('selected', false);
     $("#admin-actions-list-default").prop('selected', true);
     $("#admin-actions-list").selectmenu("refresh");
+
+    switch (selectedAction) {
+      case "approve":
+        approve_dialog.dialog("close");
+        break;
+      case "urgent":
+        urgent_dialog.dialog("close");
+        break;
+      case "deny":
+        deny_dialog.dialog("close");
+        break;
+    }
   }
 
   $("#admin-actions-list").selectmenu({
@@ -88,9 +162,6 @@ $(document).ready(function() {
       $(".admin-form input[type='checkbox']").prop('checked', false);
     }
   });
-
-  var selectedCount = 0;
-  var selectedAnnouncements = [];
 
   $(".admin-form input[type='checkbox']").change(function() {
     selectedAnnouncements = [];

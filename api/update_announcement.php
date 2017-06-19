@@ -15,12 +15,15 @@
   session_start();
 
   $result = null;
+  $result['success'] = false;
+  $result['id'] = intval($_POST['id']);
 
   if ($_SESSION['authenticated'] && $_SESSION['privlevel'] == 1) {
     // Only allow certain values (0, 1)
     if (!empty($_POST['setUrgent'])) {
       if ($_POST['setUrgent'] == 0 || $_POST['setUrgent'] == 1) {
         update_announcement_urgent(intval($_POST['id']), intval($_POST['setUrgent']));
+        $result['success'] = true;
       }
     }
     if (!empty($_POST['setApproved'])) {
@@ -28,18 +31,14 @@
       switch ($_POST['setApproved']) {
         case 1:     // Approval
           update_announcement_approve(intval($_POST['id']));
-          $result = true;
+          $result['success'] = true;
           break;
         case 2:     // Denial
           update_announcement_deny(intval($_POST['id']), $_POST['setReason']);
-          $result = true;
+          $result['success'] = true;
           break;
-        default:
-          $result = false;
       }
     }
-  } else {
-    $result = false;
   }
 
   echo_response($result);

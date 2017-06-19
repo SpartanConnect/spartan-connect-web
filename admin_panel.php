@@ -32,7 +32,7 @@
       </tr>
     </thead>
     <tbody>
-      <?php foreach ($announcements as $announcement) { ?>
+      <?php if (!empty($announcements)) { foreach ($announcements as $announcement) { ?>
       <tr id="announcement-row-<?php echo $announcement['id'] ?>">
         <td class="admin-form admin-form-td" style="width:30px;">
           <?php print_checkbox("admin-select-".$announcement['id'], $announcement['id']); ?>
@@ -56,6 +56,12 @@
           ?>
         </td>
       </tr>
+      <?php }} else { ?>
+        <td>(none)</td>
+        <td>(none)</td>
+        <td>(none)</td>
+        <td>(none)</td>
+        <td>(none)</td>
       <?php } ?>
     </tbody>
   </table>

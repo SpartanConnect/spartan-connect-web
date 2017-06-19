@@ -107,7 +107,7 @@ EOF;
   }
 
   function get_teacher_approved_announcements($id, $approved = 0) {
-    return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `teacherID` = :teacherID AND `approved`=:approved", array(
+    return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `teacherID` = :teacherID AND `approved` = :approved", array(
       ':teacherID' => intval($id),
       ':approved' => intval($approved)
     ));

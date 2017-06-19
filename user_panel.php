@@ -7,15 +7,11 @@
 ?>
 <div class="container">
   <?php if ($_SESSION['authenticated']) {
-    print_alert_info(
-      "Welcome to the user panel. Here, you can create and edit announcements."
+    print_alert_info("Welcome to the user panel. Here, you can create and edit announcements.");
+    $announcements = array_merge(
+      get_teacher_approved_announcements($_SESSION['teacherID'], 0),
+      get_teacher_approved_announcements($_SESSION['teacherID'], 2)
     );
-    $announcements = get_teacher_approved_announcements($_SESSION['teacherID'], 0);
-    $temp_announcements = get_teacher_approved_announcements($_SESSION['teacherID'], 2);
-    if($temp_announcements != null)
-    {
-        $announcements = array_merge ($announcements, $temp_announcements);
-    }
   ?>
   <div class="panel-heading">
     <h3>Your Announcements</h3>

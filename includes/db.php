@@ -22,9 +22,9 @@
     global $dbc;
     try {
       $query = $dbc->prepare($queryString);
-      $query->execute($parameters);
+      $result = $query->execute($parameters);
 
-      if ($query->rowCount()) {
+      if ($result) {
         $rows = $query->fetchAll();
         if ($selecting) {
           return $rows;
