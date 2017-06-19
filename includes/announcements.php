@@ -177,16 +177,13 @@ EOF;
     ));
   }
 
-  function create_announcement($title, $description, $teacherID, $start_date, $end_date, $event_date, $event_start, $event_end, $all_day, $urgent, $approved = 0) {
-    $result = perform_query("INSERT INTO ".DB_TABLE_ANNOUNCEMENTS." (`name`, `description`, `teacherID`, `startDate`, `endDate`, `eventDate`, `eventStartTime`, `eventEndTime`, `allDay`, `urgent`, `approved`, `timeSubmitted`) VALUES (:name, :description, :teacherID, :startDate, :endDate, :eventDate, :eventStartTime, :eventEndTime, :allDay, :urgent, :approved, CURRENT_TIMESTAMP)", array(
+  function create_announcement($title, $description, $teacherID, $start_date, $end_date, $all_day, $urgent, $approved = 0) {
+    $result = perform_query("INSERT INTO ".DB_TABLE_ANNOUNCEMENTS." (`name`, `description`, `teacherID`, `startDate`, `endDate`, `allDay`, `urgent`, `approved`, `timeSubmitted`) VALUES (:name, :description, :teacherID, :startDate, :endDate, :allDay, :urgent, :approved, CURRENT_TIMESTAMP)", array(
       ':name' => $title,
       ':description' => $description,
       ':teacherID' => $teacherID,
       ':startDate' => $start_date,
       ':endDate' => $end_date,
-      ':eventDate' => $event_date,
-      ':eventStartTime' => $event_start,
-      ':eventEndTime' => $event_end,
       ':allDay' => $all_day,
       ':urgent' => $urgent,
       ':approved' => $approved
