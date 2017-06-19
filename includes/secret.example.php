@@ -24,4 +24,6 @@
   define("DB_TABLE_TEACHERS", "teachers");                  // table of teachers
   define("DB_TABLE_TAGS", "tags");                          // table of tags
   define("DB_TABLE_TAG_ANNOUNCEMENT", "tag_announcement");  // many-many table from tags to announcements
+
+  define("DEVELOPMENT_EMAIL", "xxxxx@xxxxx.com");           // Used to email you denials
 ?>
