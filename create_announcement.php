@@ -29,14 +29,20 @@
             <?php } ?>
           </fieldset><br><br>
           <fieldset>
+            <legend>Announcement Show Dates (Today is <?php echo date('m/d/y'); ?>)</legend>
+            <p class="heading">Select a window of dates you want this announcement to appear on.</p>
+            <label>Start Date (*): </label><input type="text" class="datepicker" name="announce_start"><br><br>
+            <label>End Date (*): </label><input type="text" class="datepicker" name="announce_end">
+          </fieldset><br><br>
+          <fieldset>
             <legend>Tagging</legend>
             <b class="heading">GRADES (*)</b><br>
-            <label>7:</label> <?php print_checkbox("announce_tag_grade_7", "1"); ?>
-            <label>8:</label> <?php print_checkbox("announce_tag_grade_8", "1"); ?><br>
-            <label>9:</label> <?php print_checkbox("announce_tag_grade_9", "1"); ?>
-            <label>10:</label> <?php print_checkbox("announce_tag_grade_10", "1"); ?>
-            <label>11:</label> <?php print_checkbox("announce_tag_grade_11", "1"); ?>
-            <label>12:</label> <?php print_checkbox("announce_tag_grade_12", "1"); ?><br><br>
+            <?php print_checkbox("announce_tag_grade_7", "1"); ?><label> - Grade 7</label> <br>
+            <?php print_checkbox("announce_tag_grade_8", "1"); ?><label> - Grade 8</label><br>
+            <?php print_checkbox("announce_tag_grade_9", "1"); ?><label> - Grade 9</label><br>
+            <?php print_checkbox("announce_tag_grade_10", "1"); ?><label> - Grade 10</label><br>
+            <?php print_checkbox("announce_tag_grade_11", "1"); ?><label> - Grade 11</label><br>
+            <?php print_checkbox("announce_tag_grade_12", "1"); ?><label> - Grade 12</label><br><br>
             <button id="announce_tag_grade_btn_middle" class="small">Select 7/8</button>
             <button id="announce_tag_grade_btn_high" class="small">Select 9-12</button>
             <button id="announce_tag_grade_btn_all" class="small">Select All</button><br><br>
@@ -141,25 +147,12 @@
               });
             </script>
           </fieldset><br><br>
-          <fieldset>
-            <legend>Event Date & Time</legend>
-            <p class="heading">Select what date and times your event will take place.</p>
-            <label>Event Date (*): </label><input type="text" class="datepicker" name="announce_event_date"><br><br>
-            <label>Start Time (*): </label><input type="text" id="announcement-start" class="timepicker" name="announce_event_start"><br><br>
-            <label>End Time (*): </label><input type="text" id="announcement-end" class="timepicker" name="announce_event_end">
-          </fieldset><br><br>
-          <fieldset>
-            <legend>Announcement Show Dates (Today is <?php echo date('m/d/y'); ?>)</legend>
-            <p class="heading">Select a window of dates you want this announcement to appear on.</p>
-            <label>Start Date (*): </label><input type="text" class="datepicker" name="announce_start"><br><br>
-            <label>End Date (*): </label><input type="text" class="datepicker" name="announce_end">
-          </fieldset><br><br>
           <input type="submit" name="announce_sub" value="Submit Announcement">
         </form>
         <script>
         $(function() {
           $(".datepicker").datepicker();
-          $(".timepicker").timepicker({
+          /*$(".timepicker").timepicker({
             'minTime': '6:00 AM',
             'maxTime': '11:00 PM'
           });
@@ -172,7 +165,7 @@
               'minTime': $("#announcement-start").val(),
               'durationTime': $("#announcement-start").val()
             });
-          });
+          });*/
         });
         </script>
       <?php } else { ?>

@@ -18,7 +18,7 @@
     <div id="announcements-container-error">
       <?php print_alert_warning("We could not find an announcement with the selected categories."); ?>
     </div>
-    <?php foreach ($announcements as $announcement) { ?>
+    <?php if (!empty($announcements)) { foreach ($announcements as $announcement) { ?>
       <div class="announcement" id="announcement-display-<?php echo $announcement['id']; ?>">
         <small>Posted from <span class="announcement-start-date"><?php echo $announcement['startDate']; ?></span> until <span class="announcement-end-date"><?php echo $announcement['endDate']; ?></span> by <span class="announcement-user"><?php echo get_teacher(intval($announcement['teacherID'])); ?></span></small>
         <h1 class="announcement-name"><?php echo $announcement['name']; ?></h1>
@@ -30,6 +30,8 @@
         <?php }} ?>
         </ul>
       </div>
+    <?php }} else { ?>
+      <?php print_alert_warning("There are currently no announcements available to show."); ?>
     <?php } ?>
   </div>
 

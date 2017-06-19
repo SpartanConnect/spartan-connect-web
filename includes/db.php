@@ -22,16 +22,17 @@
     global $dbc;
     try {
       $query = $dbc->prepare($queryString);
-      $query->execute($parameters);
+      $result = $query->execute($parameters);
 
-      if ($query->rowCount()) {
-        $row = $query->fetchAll();
+      if ($result) {
+        $rows = $query->fetchAll();
         if ($selecting) {
-          return $row;
+          return $rows;
         } else {
           return $query->rowCount();
         }
       } else {
+        // TODO: Merge get_last_inserted_id() with this
         return null;
       }
     } catch(PDOException $e) {

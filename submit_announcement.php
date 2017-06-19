@@ -20,18 +20,8 @@
     if (!validate_date($_POST['announce_end']) || empty($_POST['announce_end'])) {
       array_push($errs, "The end date of the announcement is not formatted correctly.");
     }
-    if(format_date($_POST['announce_end']) < format_date($_POST['announce_start']))
-    {
+    if (format_date($_POST['announce_end']) < format_date($_POST['announce_start'])) {
       array_push($errs, "The end date of the announcement cannot occur before the start date.");
-    }
-    if (!validate_date($_POST['announce_event_date']) || empty($_POST['announce_event_date'])) {
-      array_push($errs, "The date of the event is not formatted correctly.");
-    }
-    if (!validate_time($_POST['announce_event_start']) || empty($_POST['announce_event_start'])) {
-      array_push($errs, "The start time of the announcement is not formatted correctly.");
-    }
-    if (!validate_time($_POST['announce_event_end']) || empty($_POST['announce_event_end'])) {
-      array_push($errs, "The end time of the announcement is not formatted correctly.");
     }
 
     $tags_grades = array();
@@ -64,7 +54,7 @@
 
     // Continue only if there were no errors.
     if (empty($errs) && $_SESSION['authenticated']) {
-      $result = create_announcement(mb_convert_encoding(htmlspecialchars($_POST['announce_name']),"HTML-ENTITIES"), mb_convert_encoding(htmlspecialchars($_POST['announce_desc']), "HTML-ENTITIES"), $_SESSION['teacherID'], format_date($_POST['announce_start']), format_date($_POST['announce_end']), format_date($_POST['announce_event_date']), format_time($_POST['announce_event_start']), format_time($_POST['announce_event_end']), 0, ((($_POST['announce_urgency'] == 'urgent') && ($_SESSION['privlevel'] == 1)) ? 1 : 0));
+      $result = create_announcement(mb_convert_encoding(htmlspecialchars($_POST['announce_name']),"HTML-ENTITIES"), mb_convert_encoding(htmlspecialchars($_POST['announce_desc']), "HTML-ENTITIES"), $_SESSION['teacherID'], format_date($_POST['announce_start']), format_date($_POST['announce_end']), 0, ((($_POST['announce_urgency'] == 'urgent') && ($_SESSION['privlevel'] == 1)) ? 1 : 0), ((($_POST['announce_urgency'] == 'urgent') && ($_SESSION['privlevel'] == 1)) ? 1 : 0));
       if (!$result) {
         array_push($errs, "There was a problem submitting an announcement to the database. Please try again in a while.");
       } else {

@@ -47,7 +47,7 @@ function refreshAnnouncements(cat) {
   isLoading = true;
   $.ajax({
     method: "GET",
-    url: "api/get_announcements.php",
+    url: "api/get_current_announcements.php",
     data: {
       "filters": cat,
       "returnType": "ids"
