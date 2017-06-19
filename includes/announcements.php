@@ -177,7 +177,7 @@ EOF;
     ));
   }
 
-  function create_announcement($title, $description, $teacherID, $start_date, $end_date, $event_date, $event_start, $event_end, $all_day, $urgent) {
+  function create_announcement($title, $description, $teacherID, $start_date, $end_date, $event_date, $event_start, $event_end, $all_day, $urgent, $approved = 0) {
     $result = perform_query("INSERT INTO ".DB_TABLE_ANNOUNCEMENTS." (`name`, `description`, `teacherID`, `startDate`, `endDate`, `eventDate`, `eventStartTime`, `eventEndTime`, `allDay`, `urgent`, `approved`, `timeSubmitted`) VALUES (:name, :description, :teacherID, :startDate, :endDate, :eventDate, :eventStartTime, :eventEndTime, :allDay, :urgent, :approved, CURRENT_TIMESTAMP)", array(
       ':name' => $title,
       ':description' => $description,
@@ -189,7 +189,7 @@ EOF;
       ':eventEndTime' => $event_end,
       ':allDay' => $all_day,
       ':urgent' => $urgent,
-      ':approved' => $urgent
+      ':approved' => $approved
     ), false);
     if ($result) {
       return get_last_inserted_id();
