@@ -59,7 +59,7 @@
         <button class="download" onclick="window.open('download.php')">Download All Announcements</button>
       </center>
     </div>
-    <script src="index.js"></script>
+    <script src="res/index_page.min.js"></script>
   </div>
 </div>
 <?php get_footer(); ?>
