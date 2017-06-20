@@ -45,7 +45,7 @@
       <?php }} else { ?>
       <tr>
         <td style="max-width:250px;">No announcements</td>
-        <td style="max-width:650px;">Click on '+ Create New Announcement' to create your first announcement.</td>
+        <td style="max-width:650px;">Click on '+ Create New Announcement' to create an announcement.</td>
         <td class="user-form" style="width:60px;"></td>
       </tr>
       <?php } ?>

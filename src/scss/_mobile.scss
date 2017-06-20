@@ -46,6 +46,15 @@
   .header-top-mobile {
     display: none !important;
   }
+
+  .announcement-cover {
+    flex-basis: 80vw;
+    margin: 0 10vw;
+  }
+
+  .announcement-head-list {
+    flex-basis: 80vw;
+  }
 }
 
 @media screen and (max-width: 640px) {
