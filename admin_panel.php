@@ -87,5 +87,5 @@
     print_alert_noaccess();
   } ?>
 </div>
-<script src="admin_panel.js"></script>
+<script src="res/admin_panel.min.js"></script>
 <?php get_footer(); ?>
