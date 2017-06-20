@@ -3,7 +3,6 @@
   width: 500px;
   margin: 20px auto;
   padding: 20px;
-  border-radius: 8px;
   background-color: #efefef;
 }
 
@@ -11,8 +10,48 @@
 .alert p,
 .announcement h1,
 .announcement p {
-  word-wrap: break-word;
   overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.announcement-description {
+  cursor: default;
+}
+
+.announcements-array {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  width: 820px;
+
+  .announcement {
+    cursor: pointer;
+    flex-basis: 40%;
+    flex-grow: 1;
+    margin: 10px;
+    width: 400px;
+  }
+
+  .announcement:hover > .announcement-name {
+    text-decoration: underline;
+  }
+
+  .announcement-name {
+    cursor: pointer;
+    font-size: 1em;
+    margin: 5px 0;
+  }
+
+  .announcement-description {
+    cursor: pointer;
+    font-size: .8em;
+    margin: 5px 0;
+  }
+
+  .tags-list li {
+    cursor: pointer;
+  }
 }
 
 .alert {

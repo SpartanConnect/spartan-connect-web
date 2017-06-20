@@ -55,6 +55,22 @@
   .announcement-head-list {
     flex-basis: 80vw;
   }
+
+  .announcements-tags {
+    flex-wrap: wrap;
+    li {
+      flex-basis: 40vw;
+    }
+  }
+
+  .announcements-array {
+    width: 100vw;
+
+    .announcement {
+      flex-basis: 60vw;
+      margin: 1px 0;
+    }
+  }
 }
 
 @media screen and (max-width: 640px) {
@@ -113,7 +129,15 @@
     display: inline-block !important;
   }
 
+  .announcements-tags {
+    li {
+      flex-basis: 80vw;
+      margin: 2px 5%;
+    }
+  }
+
   .announcement {
     width: 90vw !important;
   }
+
 }

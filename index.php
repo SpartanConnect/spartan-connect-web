@@ -9,9 +9,9 @@
 
 <?php if (!empty($announcements)) { ?>
   <div class="announcements-head">
-    <div class="announcement-cover" id="announcement-display-<?php echo $announcement['id']; ?>">
+    <div class="announcement-cover">
       <div class="announcement-cover-titles">
-        <h1 class="announcement-name"><?php echo $announcements[0]['name']; ?></h1>
+        <h1 class="announcement-name article-redirect" onclick="location.href = 'view.php?id=<?php echo $announcements[0]['id']; ?>'"><?php echo $announcements[0]['name']; ?></h1>
         <p class="announcement-description">
           <?php if (count(explode(" ", $announcements[0]['description'])) <= 20) {
             echo $announcements[0]['description'];
@@ -19,15 +19,23 @@
             echo implode(" ", array_slice(explode(" ", $announcements[0]['description']), 0, 20))."...";
           } ?>
         </p>
-        <b class="heading">READ MORE...</b>
+        <b class="heading article-redirect" onclick="location.href = 'view.php?id=<?php echo $announcements[0]['id']; ?>'">READ MORE...</b>
       </div>
     </div>
     <ul class="announcement-head-list">
       <?php foreach (array_slice($announcements, 1, 8) as $announcement) { ?>
-      <li><?php echo $announcement['name']; ?></li>
+      <li onclick="location.href = 'view.php?id=<?php echo $announcement['id']; ?>'">
+        <?php
+        if (strlen($announcement['name']) > 35) {
+          echo substr($announcement['name'], 0, 35)."...";
+        } else {
+          echo $announcement['name'];
+        }
+        ?>
+      </li>
       <? } ?>
       <?php if (count(array_slice($announcements, 1, 8)) < 8) { ?>
-      <li>View All Announcements...</li>
+      <li onclick="location.href = '#announcements-array'">View All Announcements...</li>
       <?php } ?>
     </ul>
   </div>
@@ -40,10 +48,6 @@
   }
   ?>
 
-  <div id="announcements-container-error">
-    <?php print_alert_warning("We could not find an announcement with the selected categories."); ?>
-  </div>
-
   <div id="announcements-container">
     <ul class="announcements-tags">
       <li>ASB</li>
@@ -53,17 +57,29 @@
       <li>General</li>
       <li>Academics</li>
     </ul>
-    <div class="announcements-array">
+
+    <div id="announcements-container-error">
+      <?php print_alert_warning("We could not find an announcement with the selected categories."); ?>
+    </div>
+
+    <div id="announcements-array" class="announcements-array">
       <?php if (!empty($announcements)) { foreach ($announcements as $announcement) { ?>
-        <div class="announcement" id="announcement-display-<?php echo $announcement['id']; ?>">
+        <div class="announcement" id="announcement-display-<?php echo $announcement['id']; ?>" onclick="location.href = 'view.php?id=<?php echo $announcement['id']; ?>'">
           <ul class="tags-list">
             <?php $tags = get_tags_by_post_id(intval($announcement['id'])); ?>
             <?php if (!empty($tags)) { foreach ($tags as $tag) { ?>
               <li class="announcement-tag"><i class="fa fa-tag"></i> <?php echo $tag['name']; ?></li>
             <?php }} ?>
           </ul>
-          <h1 class="announcement-name"><?php echo $announcement['name']; ?></h1>
-          <p class="announcement-description"><?php echo $announcement['description']; ?></p>
+          <h1 class="announcement-name article-redirect"><?php echo $announcement['name']; ?></h1>
+          <p class="announcement-description">
+            <?php if (count(explode(" ", $announcement['description'])) <= 25) {
+              echo $announcement['description'];
+            } else {
+              echo implode(" ", array_slice(explode(" ", $announcement['description']), 0, 25))."...";
+            } ?>
+            <b class="heading article-redirect" onclick="location.href = 'view.php?id=<?php echo $announcement['id']; ?>'">READ MORE</b>
+          </p>
         </div>
       <?php }} else { ?>
         <?php print_alert_warning("There are currently no announcements available to show."); ?>
