@@ -14,6 +14,7 @@ favicon.old.png
 # Unwanted folders
 /bower_components/
 /node_modules/
+/res/
 
 # remote-ftp configuration files
 .ftpconfig

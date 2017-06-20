@@ -8,5 +8,7 @@ A basic web app that allows teachers and administrators to add announcements to 
 4. Change working directory to your previous folder and run `composer install` (or `./composer.phar install`). This will install the Auth0 dependencies.
 5. Install bower through npm: `npm install -g bower`
 6. Install bower dependencies: `bower install`
-7. Go to your localhost and check if it's working!
-8. If you are on Windows and are running into problems with `curl` and certificates, see https://github.com/auth0/Auth0-PHP#troubleshoot.
+7. Install gulp-cli using `npm install -g gulp-cli`, install other dependencies using `npm install`
+8. Run `gem install sass` and run `gulp`
+9. Go to your localhost and check if it's working!
+10. If you are on Windows and are running into problems with `curl` and certificates, see https://github.com/auth0/Auth0-PHP#troubleshoot.
