@@ -28,7 +28,12 @@
     <tbody>
       <?php if (!empty($announcements)) { foreach ($announcements as $announcement) { ?>
       <tr>
-        <td style="max-width:250px;"><?php echo $announcement['name']; ?> <span class="user-announcement-id">(#<?php echo $announcement['id']; ?>)</span></td>
+        <td style="max-width:250px;">
+          <?php if ($announcement['urgent']) { ?>
+            <span style="color: #f00; font-size: 0.75em;"><i class="fa fa-flag" aria-hidden="true"></i> AS URGENT</span><br>
+          <?php } ?>
+          <?php echo $announcement['name']; ?>
+          <span class="user-announcement-id">(#<?php echo $announcement['id']; ?>)</span></td>
         <td style="max-width:650px;"><?php echo $announcement['description']; ?></td>
         <td class="user-form" style="width:60px;">
           <div class="action-selectors">
