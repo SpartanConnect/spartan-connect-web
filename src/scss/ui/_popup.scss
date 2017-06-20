@@ -1,0 +1,89 @@
+/* Announcement Filter Box (Temporary?) */
+.announcement-filter {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  background-color: #efefef;
+  padding: 20px;
+  border-radius: 6px;
+  font-size: 0.8em;
+  transition: all 500ms ease;
+}
+
+.announcement-filter.hidden {
+  bottom: -420px;
+  background-color: rgba(0,0,0,0);
+  transition: all 500ms ease;
+}
+
+.announcement-filter .announcement-filter-content {
+  opacity: 1;
+  transition: all 500ms ease;
+}
+
+.announcement-filter.hidden .announcement-filter-content {
+  opacity: 0;
+  transition: all 500ms ease;
+}
+
+.filters-list {
+  height: 280px;
+  overflow: scroll;
+}
+
+.filter-list {
+  display: block;
+  margin: 0 20px;
+  padding: 0;
+  height: 30px;
+}
+
+.filter-list-text {
+  float: left;
+  padding-top: 4px;
+}
+
+.filter-list .checkbox {
+  float: right;
+}
+
+/* Tag Dropdown Styling */
+.ui-selectmenu-menu {
+  border: none;
+  background-color: #bfbfbf;
+  border-radius: 6px;
+  width: auto;
+}
+
+.ui-selectmenu-button.ui-button {
+  height: 1em;
+  width: auto !important;
+  margin-bottom: 5px;
+  margin-right: 5px;
+}
+
+.ui-selectmenu-text {
+  font-size: 0.8em;
+  font-family: Overpass, sans-serif;
+}
+
+/* Tags Styling */
+.tags-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tags-list li {
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.announcement-tag {
+  font-size: 0.8em;
+  cursor: default;
+  padding: 4px 6px;
+  background-color: #bfbfbf;
+  border-radius: 6px;
+}
