@@ -56,15 +56,14 @@
     <div class="announcements-array">
       <?php if (!empty($announcements)) { foreach ($announcements as $announcement) { ?>
         <div class="announcement" id="announcement-display-<?php echo $announcement['id']; ?>">
-          <small>Posted from <span class="announcement-start-date"><?php echo $announcement['startDate']; ?></span> until <span class="announcement-end-date"><?php echo $announcement['endDate']; ?></span> by <span class="announcement-user"><?php echo get_teacher(intval($announcement['teacherID'])); ?></span></small>
+          <ul class="tags-list">
+            <?php $tags = get_tags_by_post_id(intval($announcement['id'])); ?>
+            <?php if (!empty($tags)) { foreach ($tags as $tag) { ?>
+              <li class="announcement-tag"><i class="fa fa-tag"></i> <?php echo $tag['name']; ?></li>
+            <?php }} ?>
+          </ul>
           <h1 class="announcement-name"><?php echo $announcement['name']; ?></h1>
           <p class="announcement-description"><?php echo $announcement['description']; ?></p>
-          <ul class="tags-list">
-          <?php $tags = get_tags_by_post_id(intval($announcement['id'])); ?>
-          <?php if (!empty($tags)) { foreach ($tags as $tag) { ?>
-            <li class="announcement-tag"><i class="fa fa-tag"></i> <?php echo $tag['name']; ?></li>
-          <?php }} ?>
-          </ul>
         </div>
       <?php }} else { ?>
         <?php print_alert_warning("There are currently no announcements available to show."); ?>
