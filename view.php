@@ -18,7 +18,7 @@
 <div class="container">
   <?php if (!empty($announcement)) { ?>
     <div style="margin: 60px 0; max-width: 720px;">
-      <button onclick="location.href='index.php'">Return to Home Page</button>
+
       <h1><?php echo $announcement['name']; ?></h1>
       <ul class="tags-list">
         <?php $tags = get_tags_by_post_id(intval($announcement['id'])); ?>
@@ -27,6 +27,7 @@
         <?php }} ?>
       </ul>
       <p><?php echo $announcement['description']; ?></p>
+      <button onclick="location.href='index.php'">Return to Home Page</button>
     </div>
 
   <?php } else { ?>
