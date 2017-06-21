@@ -59,13 +59,11 @@
   ?>
 
   <div id="announcements-container">
+    <?php $all_tags = get_tags(); ?>
     <ul class="announcements-tags">
-      <li>ASB</li>
-      <li>Sports</li>
-      <li>Clubs</li>
-      <li>Counseling</li>
-      <li>General</li>
-      <li>Academics</li>
+      <?php foreach (array_slice($all_tags, 0, 6) as $tag) { ?>
+        <li value="<?php echo $tag['id']; ?>"><?php echo $tag['name']; ?></li>
+      <?php } ?>
     </ul>
 
     <div id="announcements-container-error">
