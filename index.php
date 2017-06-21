@@ -11,7 +11,14 @@
   <div class="announcements-head">
     <div class="announcement-cover">
       <div class="announcement-cover-titles">
-        <h1 class="announcement-name article-redirect" onclick="location.href = 'view.php?id=<?php echo $announcements[0]['id']; ?>'"><?php echo $announcements[0]['name']; ?></h1>
+        <h1 class="announcement-name article-redirect" onclick="location.href = 'view.php?id=<?php echo $announcements[0]['id']; ?>'">
+          <?php
+          if ($announcements[0]['urgent']) {
+            echo '[<i class="fa fa-circle" aria-hidden="true"></i> URGENT] ';
+          }
+          echo $announcements[0]['name'];
+          ?>
+        </h1>
         <p class="announcement-description">
           <?php if (count(explode(" ", $announcements[0]['description'])) <= 20) {
             echo $announcements[0]['description'];
@@ -26,6 +33,9 @@
       <?php foreach (array_slice($announcements, 1, 8) as $announcement) { ?>
       <li onclick="location.href = 'view.php?id=<?php echo $announcement['id']; ?>'">
         <?php
+        if ($announcement['urgent']) {
+          echo '<i class="fa fa-circle" aria-hidden="true" style="font-size: 12px; vertical-align: text-top;"></i> ';
+        }
         if (strlen($announcement['name']) > 35) {
           echo substr($announcement['name'], 0, 35)."...";
         } else {
