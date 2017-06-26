@@ -28,7 +28,12 @@
     <tbody>
       <?php if (!empty($announcements)) { foreach ($announcements as $announcement) { ?>
       <tr>
-        <td style="max-width:250px;"><?php echo $announcement['name']; ?> <span class="user-announcement-id">(#<?php echo $announcement['id']; ?>)</span></td>
+        <td style="max-width:250px;">
+          <?php if ($announcement['urgent']) { ?>
+            <span style="color: #f00; font-size: 0.75em;"><i class="fa fa-flag" aria-hidden="true"></i> AS URGENT</span><br>
+          <?php } ?>
+          <?php echo $announcement['name']; ?>
+          <span class="user-announcement-id">(#<?php echo $announcement['id']; ?>)</span></td>
         <td style="max-width:650px;"><?php echo $announcement['description']; ?></td>
         <td class="user-form" style="width:60px;">
           <div class="action-selectors">
@@ -40,7 +45,7 @@
       <?php }} else { ?>
       <tr>
         <td style="max-width:250px;">No announcements</td>
-        <td style="max-width:650px;">Click on '+ Create New Announcement' to create your first announcement.</td>
+        <td style="max-width:650px;">Click on '+ Create New Announcement' to create an announcement.</td>
         <td class="user-form" style="width:60px;"></td>
       </tr>
       <?php } ?>

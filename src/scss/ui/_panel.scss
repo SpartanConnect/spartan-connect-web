@@ -1,0 +1,106 @@
+/* Table */
+table {
+  text-align: left;
+  border: 1px solid #4f4f4f;
+  margin: 0 auto;
+  width: 960px;
+  cursor: default;
+  border-collapse: collapse;
+}
+
+table th,
+td {
+  border: 1px solid #4f4f4f;
+  margin: 0;
+  padding: 5px 10px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+table tr {
+  vertical-align: text-top;
+  background-color: #efefef;
+}
+
+table tr:hover {
+  background-color: #ffffff;
+}
+
+/* Panels */
+.panel-heading {
+  margin-bottom: 10px;
+}
+
+.panel-heading h3 {
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.panel-heading .ui-selectmenu-button,
+.panel-heading button,
+.panel-heading select {
+  display: inline-block;
+  float: right;
+}
+/* Admin Panel */
+.admin-form,
+.user-form {
+  vertical-align: middle;
+}
+
+.admin-announcement-id,
+.user-announcement-id {
+  color: #efefef;
+}
+
+table tr:hover .admin-announcement-id,
+table tr:hover .user-announcement-id {
+  color: #8f8f8f;
+}
+
+.ui-dialog-titlebar-close {
+  display: none;
+}
+
+/* A round, clickable button */
+.round-touch {
+  display: inline-block;
+  padding: 5px;
+  margin: 0;
+  text-align: center;
+  vertical-align: center;
+  background-color: #cfcfcf;
+  width: 20px;
+  height: 16px;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.round-touch:hover {
+  background-color: #afafaf;
+  transition: background-color 150ms ease;
+}
+
+.round-touch.red:hover {
+  background-color: #e74c3c;
+}
+
+.round-touch.green:hover {
+  background-color: #2ecc71;
+}
+
+.round-touch.blue:hover {
+  background-color: #3498db;
+}
+
+.action-selectors {
+  border: 1px solid #4f4f4f;
+  border-radius: 8px;
+  background-color: #cfcfcf;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.dialog {
+  font-family: Overpass, sans-serif;
+}

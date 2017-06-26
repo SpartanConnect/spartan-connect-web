@@ -27,6 +27,7 @@ gulp.task('js', function () {
 // Watch over changes in the src directory
 gulp.task('watch', function () {
   gulp.watch('./src/scss/*.scss', ['css']);
+  gulp.watch('./src/scss/**/*.scss', ['css']);
   gulp.watch('./src/js/*.js', ['js']);
 });
 

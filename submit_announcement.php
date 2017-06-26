@@ -54,7 +54,7 @@
 
     // Continue only if there were no errors.
     if (empty($errs) && $_SESSION['authenticated']) {
-      $result = create_announcement(mb_convert_encoding(htmlspecialchars($_POST['announce_name']),"HTML-ENTITIES"), mb_convert_encoding(htmlspecialchars($_POST['announce_desc']), "HTML-ENTITIES"), $_SESSION['teacherID'], format_date($_POST['announce_start']), format_date($_POST['announce_end']), 0, ((($_POST['announce_urgency'] == 'urgent') && ($_SESSION['privlevel'] == 1)) ? 1 : 0), ((($_POST['announce_urgency'] == 'urgent') && ($_SESSION['privlevel'] == 1)) ? 1 : 0));
+      $result = create_announcement(mb_convert_encoding(htmlspecialchars($_POST['announce_name']),"HTML-ENTITIES"), nl2br(mb_convert_encoding(htmlspecialchars($_POST['announce_desc']), "HTML-ENTITIES")), $_SESSION['teacherID'], format_date($_POST['announce_start']), format_date($_POST['announce_end']), 0, ((($_POST['announce_urgency'] == 'urgent') && ($_SESSION['privlevel'] == 1)) ? 1 : 0), 0);
       if (!$result) {
         array_push($errs, "There was a problem submitting an announcement to the database. Please try again in a while.");
       } else {

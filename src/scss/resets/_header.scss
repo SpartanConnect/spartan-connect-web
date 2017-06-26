@@ -1,0 +1,108 @@
+/* Header */
+header {
+  height: 160px;
+  width: 100%;
+}
+
+.header-top {
+  background: #A6192E;
+  color: #efefef;
+  height: 40px;
+  text-align: right;
+  width: 100%;
+}
+
+.header-top-title {
+  display: none;
+  margin-top: 10px;
+  margin-left: 10vw;
+  float: left;
+  cursor: pointer;
+}
+
+.header-top-mobile {
+  display: none;
+  margin-top: 6px;
+  margin-right: 10vw;
+  font-size: 24px !important;
+  cursor: pointer;
+}
+
+.header-menu {
+  margin: 0 10vw;
+  padding: 0;
+  list-style-type: none;
+  vertical-align: middle;
+  z-index: 99;
+}
+
+.header-menu li {
+  margin-top: 10px;
+  font-size: 16px;
+  margin-left: 20px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.header-menu li:hover {
+  text-decoration: underline;
+}
+
+#login-modal {
+  width: 320px;
+  margin: 40px auto;
+  padding: 10px;
+  box-shadow: 0 2px 4px #0f0f0f;
+  background-color: #efefef;
+  position: absolute;
+  right: 10vw;
+  top: 10px;
+  z-index: 99;
+  opacity: 1;
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+}
+
+#login-modal.hidden {
+  opacity: 0;
+  top: -10px;
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+}
+
+.header-school-container {
+  border-right: 4px #F2A900 solid;
+  float: left;
+  height: 120px;
+  position: relative;
+  width: 270px;
+}
+
+.header-school-text {
+  bottom: 0;
+  color: #F2A900;
+  float: right;
+  font-family: Baskerville, serif;
+  font-size: 1.25em;
+  position: absolute;
+  right: 10px;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.header-title-container {
+  float: left;
+  height: 120px;
+  position: relative;
+}
+
+.header-title-text {
+  bottom: 0;
+  color: #862633;
+  font-family: 'Cookie', cursive;
+  font-size: 3em;
+  left: 10px;
+  position: absolute;
+  width: 300px;
+  cursor: pointer;
+}

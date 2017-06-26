@@ -92,7 +92,7 @@ EOF;
   }
 
   function get_current_announcements() {
-    return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `startDate` <= CURRENT_DATE AND `endDate` >= CURRENT_DATE AND `approved`=1 ORDER BY `timeSubmitted` DESC", array());
+    return perform_query("SELECT * FROM ".DB_TABLE_ANNOUNCEMENTS." WHERE `startDate` <= CURRENT_DATE AND `endDate` >= CURRENT_DATE AND `approved`=1 ORDER BY `urgent` DESC, `timeSubmitted` DESC", array());
   }
 
   function get_unapproved_announcements() {

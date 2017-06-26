@@ -39,6 +39,10 @@ $("#filter-list-search").click(function(e) {
   }
 });
 
+$(".announcements-tags li").click(function () {
+  refreshAnnouncements(parseInt($(this).attr('value')));
+});
+
 $(document).ready(function(){
   $("#announcements-container-error").hide();
 });

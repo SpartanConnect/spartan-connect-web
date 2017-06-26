@@ -37,7 +37,13 @@
         <td class="admin-form admin-form-td" style="width:30px;">
           <?php print_checkbox("admin-select-".$announcement['id'], $announcement['id']); ?>
         </td>
-        <td style="max-width:150px;"><?php echo $announcement['name'] ?> <span class="admin-announcement-id">(#<?php echo $announcement['id']; ?>)</span></td>
+        <td style="max-width:150px;">
+          <?php if ($announcement['urgent']) { ?>
+            <span style="color: #f00; font-size: 0.75em;"><i class="fa fa-flag" aria-hidden="true"></i> AS URGENT</span><br>
+          <?php } ?>
+          <?php echo $announcement['name'] ?>
+          <span class="admin-announcement-id">(#<?php echo $announcement['id']; ?>)</span>
+        </td>
         <td style="max-width:450px;"><?php echo $announcement['description'] ?></td>
         <td style="max-width:120px;"><?php echo get_teacher($announcement['teacherID']); ?></td>
         <td style="max-width:200px;">
