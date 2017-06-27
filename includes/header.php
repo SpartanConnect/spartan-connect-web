@@ -35,7 +35,7 @@
             <span class="header-top-title" onclick="location.href=\'index.php\'">Spartan Connect</span>
             <i class="fa fa-bars header-top-mobile" aria-hidden="true"></i>
             <ul class="header-menu">';
-      echo '<li onclick="location.href=\'index.php\'" href="#">Home</li>';
+      echo '<li onclick="location.href=\'index.php\'" href="#"><div id="headerItem">Home</div></li>';
       if ($_SESSION['authenticated']) {
         echo '<li onclick="location.href=\'user_panel.php\'" href="#">User Panel</li>';
         if ($_SESSION['privlevel'] == 1) {
@@ -43,8 +43,7 @@
         }
         echo '<li onclick="location.href=\'logout.php\'" href="#">Log Out</li></ul>';
       } else {
-        echo '<li onclick="showModal();" href="#">Log In</li></ul>';
-        echo '<div id="login-modal"></div>';
+        echo '<li><div class="g-signin2" data-onsuccess="onSignIn"></div></li></ul>';
       }
       echo '
           </div>
@@ -71,46 +70,14 @@
             $(".header-top-mobile").click(function() {
               $(".header-menu").slideToggle();
             });
-          </script>
-      </header>';
+          </script>';
+      if (!$_SESSION['authenticated']) {
+        echo '<script src="https://apis.google.com/js/platform.js" async defer></script>';
+        echo '<meta name="google-signin-client_id" content="'.OAUTH_CLIENT_ID.'">';
+      }
+      echo '</header>';
   }
   function get_footer() {
-    if (!$_SESSION['authenticated']) {
-      echo '
-      <script src="https://cdn.auth0.com/js/lock/10.16/lock.min.js"></script>
-      <script>
-        var lock = new Auth0Lock(\''.AUTH0_CLIENT_ID.'\', \''.AUTH0_DOMAIN.'\', {
-          container: "login-modal",
-          auth: {
-            redirectUrl: \''.((IS_DEVELOPMENT ? LOCAL_URL : REMOTE_URL).AUTH0_REDIRECT_URI).'\',
-            responseType: \'code\',
-            params: {
-              scope: \'openid\'
-            }
-          },
-          theme: {
-            primaryColor: "#862633",
-            authButtons: {
-              "google-oauth2": {
-                displayName: "@lcusd.net",
-                primaryColor: "#862633",
-                foregroundColor: "#F2A900"
-              }
-            }
-          },
-          languageDictionary: {
-            title: "Spartan Connect"
-          }
-        });
-        function showModal() {
-          $("#login-modal").toggleClass("hidden");
-        }
-        $(document).ready(function() {
-          lock.show();
-          $("#login-modal").removeClass("hidden");
-        });
-      </script>';
-    }
     echo '</body></html>';
   }
 ?>
