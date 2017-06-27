@@ -15,7 +15,7 @@
   }
 
 ?>
-<div class="view-container">
+<div class="container">
   <?php if (!empty($announcement)) { ?>
     <div style="margin: 60px 0; max-width: 720px;">
 
