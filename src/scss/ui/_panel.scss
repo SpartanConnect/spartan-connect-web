@@ -29,6 +29,11 @@ table tr:hover {
 /* Panels */
 .panel-heading {
   margin-bottom: 10px;
+
+  .panel-heading-right {
+    display: inline-block;
+    float: right;
+  }
 }
 
 .panel-heading h3 {
@@ -36,13 +41,26 @@ table tr:hover {
   margin-top: 5px;
 }
 
-.panel-heading .ui-selectmenu-button,
-.panel-heading button,
-.panel-heading select {
-  display: inline-block;
-  float: right;
+// Panel description class in the table
+.panel-description {
+  position: relative;
+  min-height: 40px;
+
+  .panel-description-btns {
+    position: absolute;
+
+    right: 10px;
+    top: 0;
+
+    button {
+      display: inline-block;
+      font-size: .7em;
+      margin: 2px 2px;
+    }
+  }
 }
-/* Admin Panel */
+
+// Admin Panel
 .admin-form,
 .user-form {
   vertical-align: middle;
@@ -62,8 +80,8 @@ table tr:hover .user-announcement-id {
   display: none;
 }
 
-/* A round, clickable button */
-.round-touch {
+/* A round, clickable button: deprecated */
+/*.round-touch {
   display: inline-block;
   padding: 5px;
   margin: 0;
@@ -91,7 +109,7 @@ table tr:hover .user-announcement-id {
 
 .round-touch.blue:hover {
   background-color: #3498db;
-}
+}*/
 
 .action-selectors {
   border: 1px solid #4f4f4f;

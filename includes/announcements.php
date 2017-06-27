@@ -38,6 +38,12 @@
     ));
   }
 
+  function update_announcement_obliterate($id) {
+    perform_query("UPDATE ".DB_TABLE_ANNOUNCEMENTS." SET `approved` = 3 WHERE `id` = :id", array(
+      ':id' => $id
+    ));
+  }
+
   function update_announcement_deny($id, $reason) {
     perform_query("UPDATE ".DB_TABLE_ANNOUNCEMENTS." SET `approved` = 2 WHERE `id` = :id", array(
       ':id' => $id
