@@ -28,7 +28,7 @@
     </thead>
     <tbody>
       <?php if (!empty($announcements)) { foreach ($announcements as $announcement) { ?>
-      <tr>
+      <tr class="announcement-row" id="announcement-row-<?php echo $announcement['id']; ?>">
         <td style="max-width:240px;">
           <?php if ($announcement['urgent']) { ?>
             <span style="color: #f00; font-size: 0.75em;"><i class="fa fa-flag" aria-hidden="true"></i> AS URGENT</span><br>
@@ -52,7 +52,7 @@
     </tbody>
   </table>
   <?php
-    print_dialog_panel_announcement(
+    print_dialog_panel_edit(
       "user-dialog-edit",
       "Edit Announcements",
       null);

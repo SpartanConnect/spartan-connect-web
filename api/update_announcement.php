@@ -64,6 +64,18 @@
             $result['error'] = "Invalid options.";
         }
       }
+      if (!empty($_POST['setTitle'])) {
+        update_announcement_title($result['id'], $_POST['setTitle']);
+        $result['success'] = true;
+      }
+      if (!empty($_POST['setDescription'])) {
+        // Replaces w/ <br>s
+        $_POST['setDescription'] = trim(preg_replace('/\s+/', '', $_POST['setDescription']));
+        $_POST['setDescription'] = preg_replace("/<br\W*?\/>/", "\n", $_POST['setDescription']);
+        $_POST['setDescription'] = preg_replace("/<br\W*?\>/", "\n", $_POST['setDescription']);
+        update_announcement_description($result['id'], $_POST['setDescription']);
+        $result['success'] = true;
+      }
     } else {
       $result['success'] = false;
       $result['error'] = "Incorrect user.";

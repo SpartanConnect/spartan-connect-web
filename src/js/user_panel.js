@@ -29,7 +29,8 @@ $(document).ready(function() {
           url: "api/update_announcement.php",
           data: {
             "id": selectedAnnouncement.id,
-            "setApproved": 3,
+            "setTitle": $(".user-dialog-edit-heading .emojionearea-editor").html(),
+            "setDescription": $(".user-dialog-edit-description .emojionearea-editor").html(),
             "userPanel": true
           },
           dataType: "json"
@@ -59,7 +60,7 @@ $(document).ready(function() {
           data: {
             "id": selectedAnnouncement,
             "setApproved": 3,
-            "userPanel", true
+            "userPanel": true
           },
           dataType: "json"
         }).done(ajaxUpdateAnnouncementCallback);
@@ -73,8 +74,17 @@ $(document).ready(function() {
         edit_dialog.dialog("close");
         break;
       case "delete":
+        removeAnnouncement(selectedAnnouncement.id);
         delete_dialog.dialog("close");
         break;
+    }
+  }
+
+  function removeAnnouncement(id) {
+    $("#announcement-row-"+id).remove();
+
+    if ($(".announcement-row").length === 0) {
+      location.reload();
     }
   }
 
@@ -87,13 +97,23 @@ $(document).ready(function() {
   }
 
   function syncAnnounceData(announce, type) {
-    $(".user-dialog-"+type+"-heading").html(announce.title);
+    $(".user-dialog-"+type+"-heading").text(announce.title);
     $(".user-dialog-"+type+"-author").html(announce.description);
     $(".user-dialog-"+type+"-description").html(announce.author);
     if (announce.tags === "") {
       announce.tags = "(none)";
     }
     $(".user-dialog-"+type+"-tags").text("Tags: "+announce.tags);
+  }
+
+  function syncAnnounceForms(announce) {
+    $(".user-dialog-edit-heading .emojionearea-editor").html(announce.title);
+    $(".user-dialog-edit-description .emojionearea-editor").html(announce.description);
+    if (announce.tags === "") {
+      announce.tags = "(none)";
+    }
+    $(".user-dialog-edit-tags").text("Tags: "+announce.tags);
+    edit_dialog.dialog("open");
   }
 
   $(".panel-btns-edit").click(function() {
@@ -104,7 +124,8 @@ $(document).ready(function() {
       method: "GET",
       url: "api/get_announcement_by_id.php",
       data: {
-        "announcement_id": selectedAnnouncement.id
+        "announcement_id": selectedAnnouncement.id,
+        "editHTML": true
       },
       dataType: "json"
     }).done(function (data) {
@@ -113,8 +134,7 @@ $(document).ready(function() {
       selectedAnnouncement.description = data.description;
       selectedAnnouncement.author = data.teacherName;
       selectedAnnouncement.tags = data.tagsString;
-      syncAnnounceData(selectedAnnouncement, "edit");
-      edit_dialog.dialog("open");
+      syncAnnounceForms(selectedAnnouncement);
     });
 
   });
@@ -127,11 +147,11 @@ $(document).ready(function() {
       method: "GET",
       url: "api/get_announcement_by_id.php",
       data: {
-        "announcement_id": selectedAnnouncement.id
+        "announcement_id": selectedAnnouncement.id,
+        "editHTML": true
       },
       dataType: "json"
     }).done(function (data) {
-      console.log(data);
       selectedAnnouncement.title = data.name;
       selectedAnnouncement.description = data.description;
       selectedAnnouncement.author = data.teacherName;
@@ -139,6 +159,11 @@ $(document).ready(function() {
       syncAnnounceData(selectedAnnouncement, "delete");
       delete_dialog.dialog("open");
     });
+  });
+
+  $(".input-emojis").emojioneArea({
+    pickerPosition: "bottom",
+    tonesStyle: "bullet"
   });
 
 });

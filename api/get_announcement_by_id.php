@@ -15,6 +15,10 @@
         }
       }
       $post['tagsString'] = implode(", ", $tags);
+      if ($_GET['editHTML']) {
+        $post['name'] = html_entity_decode(strip_tags($post['name']));
+        $post['description'] = html_entity_decode($post['description']);
+      }
     } catch (Exception $e) {
       echo 'Caught exception: ',  $e->getMessage(), "\n";
     }
