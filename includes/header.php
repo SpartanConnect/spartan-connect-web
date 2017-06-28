@@ -41,8 +41,9 @@
         if ($_SESSION['privlevel'] == 1) {
           echo '<li onclick="location.href=\'admin_panel.php\'" href="#">Admin Panel</li>';
         }
-        echo '<li onclick="location.href=\'logout.php\'" href="#">Log Out</li></ul>';
-      } else {
+        echo '<button onclick="signOut()">Sign Out</button>';
+      }
+      else {
         echo '<li><div class="g-signin2" data-onsuccess="onSignIn"></div></li></ul>';
       }
       echo '
