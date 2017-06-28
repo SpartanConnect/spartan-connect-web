@@ -6,6 +6,7 @@
   // $_POST['setUrgent'] => the number for setting the urgent attribute
   // $_POST['setApproved'] => the number for setting the approved attribute
   // $_POST['setReason'] => the specific reason for doing such (used for approval)
+  // $_POST['userPanel'] => true if using user panel, false otherwise. Should be automatic.
 
   // TODO: Prevent scripts from external sites from accessing this page!
 
@@ -18,7 +19,14 @@
   $result['success'] = false;
   $result['id'] = intval($_POST['id']);
 
-  if ($_SESSION['authenticated'] && $_SESSION['privlevel'] == 1) {
+  if (empty($_POST['userPanel'])) {
+    $_POST['userPanel'] = false;
+  }
+
+  if (empty($result['id'])) {
+    $result['success'] = false;
+    $result['error'] = "No post id specified.";
+  } else if ($_SESSION['authenticated'] && $_SESSION['privlevel'] == 1 && !$_POST['userPanel']) {
     // Only allow certain values (0, 1)
     if (!empty($_POST['setUrgent'])) {
       if ($_POST['setUrgent'] == 0 || $_POST['setUrgent'] == 1) {
@@ -37,8 +45,44 @@
           update_announcement_deny(intval($_POST['id']), $_POST['setReason']);
           $result['success'] = true;
           break;
+        default:
+          $result['success'] = false;
+          $result['error'] = "Invalid options.";
       }
     }
+  } else if ($_SESSION['authenticated'] && $_POST['userPanel']) {
+    // Step 1: Make sure it checks that the teacher is the actual creator!
+    if (get_announcement_by_id($result['id'])['teacherID'] == $_SESSION['teacherID']) {
+      if (!empty($_POST['setApproved'])) {
+        switch ($_POST['setApproved']) {
+          case 3:     // Obliterate
+            update_announcement_obliterate(intval($_POST['id']));
+            $result['success'] = true;
+            break;
+          default:
+            $result['success'] = false;
+            $result['error'] = "Invalid options.";
+        }
+      }
+      if (!empty($_POST['setTitle'])) {
+        update_announcement_title($result['id'], $_POST['setTitle']);
+        $result['success'] = true;
+      }
+      if (!empty($_POST['setDescription'])) {
+        // Replaces w/ <br>s
+        $_POST['setDescription'] = str_replace('\n', '', $_POST['setDescription']);
+        $_POST['setDescription'] = preg_replace("/<br\W*?\/>/", "\n", $_POST['setDescription']);
+        $_POST['setDescription'] = preg_replace("/<br\W*?\>/", "\n", $_POST['setDescription']);
+        update_announcement_description($result['id'], $_POST['setDescription']);
+        $result['success'] = true;
+      }
+    } else {
+      $result['success'] = false;
+      $result['error'] = "Incorrect user.";
+    }
+  } else {
+    $result['success'] = false;
+    $result['error'] = "General error.";
   }
 
   echo_response($result);

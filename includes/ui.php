@@ -63,6 +63,20 @@
     print_dialog($tag, $title, $content);
   }
 
+  function print_dialog_panel_edit($tag, $title, $description = null, $html = null) {
+    $content = "";
+    if (!empty($description)) { $content = $content."<p>".$description."</p>"; }
+    $content = $content.'<form id="'.$tag.'-announcements">
+    <div class="admin-announcement admin-announcement-0">
+      <input class="'.$tag.'-heading input-emojis" name="'.$tag.'-heading" placeholder="Insert title here..."/><br>
+      <textarea class="'.$tag.'-description input-emojis" name="'.$tag.'-description" placeholder="Insert description here..."></textarea><br>
+      <i class="heading '.$tag.'-tags">Tags: (none)</i>
+    </div>
+    </form>';
+    if (!empty($html)) { $content = $content.$html; }
+    print_dialog($tag, $title, $content);
+  }
+
   // Checkbox: General Function for Printing Custom Checkbox
   function print_checkbox($id, $value) {
     echo '<div class="checkbox">

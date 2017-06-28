@@ -38,6 +38,12 @@
     ));
   }
 
+  function update_announcement_obliterate($id) {
+    perform_query("UPDATE ".DB_TABLE_ANNOUNCEMENTS." SET `approved` = 3 WHERE `id` = :id", array(
+      ':id' => $id
+    ));
+  }
+
   function update_announcement_deny($id, $reason) {
     perform_query("UPDATE ".DB_TABLE_ANNOUNCEMENTS." SET `approved` = 2 WHERE `id` = :id", array(
       ':id' => $id
@@ -87,6 +93,20 @@ EOF;
   function update_announcement_urgent($id, $urgent = 1) {
     perform_query("UPDATE ".DB_TABLE_ANNOUNCEMENTS." SET `urgent` = :urgent WHERE `id` = :id", array(
       ':urgent' => $urgent,
+      ':id' => $id
+    ));
+  }
+
+  function update_announcement_title($id, $name) {
+    perform_query("UPDATE ".DB_TABLE_ANNOUNCEMENTS." SET `name` = :name WHERE `id` = :id AND `approved`=0", array(
+      ':name' => mb_convert_encoding(htmlspecialchars($name), "HTML-ENTITIES"),
+      ':id' => $id
+    ));
+  }
+
+  function update_announcement_description($id, $description) {
+    perform_query("UPDATE ".DB_TABLE_ANNOUNCEMENTS." SET `description` = :description WHERE `id` = :id AND `approved`=0", array(
+      ':description' => nl2br(mb_convert_encoding(htmlspecialchars($description), "HTML-ENTITIES")),
       ':id' => $id
     ));
   }

@@ -14,12 +14,14 @@
   ?>
   <div class="panel-heading">
     <h3>Unapproved Announcements</h3>
-    <select id="admin-actions-list" disabled="disabled">
-      <option id="admin-actions-list-default" selected>-- Select an Action --</option>
-      <option id="admin-actions-list-approve" class="admin-list-action" value="approve">Approve Announcement</option>
-      <option id="admin-actions-list-deny" class="admin-list-action" value="deny">Deny Announcement</option>
-      <option id="admin-actions-list-urgent" class="admin-list-action" value="urgent">Set Announcement to Urgent</option>
-    </select>
+    <div class="panel-heading-right">
+      <select id="admin-actions-list" disabled="disabled">
+        <option id="admin-actions-list-default" selected>-- Select an Action --</option>
+        <option id="admin-actions-list-approve" class="admin-list-action" value="approve">Approve Announcement</option>
+        <option id="admin-actions-list-deny" class="admin-list-action" value="deny">Deny Announcement</option>
+        <option id="admin-actions-list-urgent" class="admin-list-action" value="urgent">Set Announcement to Urgent</option>
+      </select>
+    </div>
   </div>
   <table>
     <thead>
